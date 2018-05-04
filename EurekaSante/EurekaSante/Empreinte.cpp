@@ -21,13 +21,13 @@ Empreinte::~Empreinte()
 }
 
 void Empreinte::Afficher() {
-	vector<attributString>::iterator itS;
-	vector<attributDouble>::iterator itD;
+	vector<string>::iterator itS;
+	vector<double>::iterator itD;
 	for (itS = attributsString.begin(); itS != attributsString.end(); ++itS) {
-		cout << itS->nom << " : "<< itS->valeur << ",";
+		cout << *itS << ",";
 	}
 	for (itD = attributsDouble.begin(); itD != attributsDouble.end(); ++itD) {
-		cout << itD->nom << " : " << itD->valeur << ",";
+		cout << *itD << ",";
 	}
 	cout << endl;
 }

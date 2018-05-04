@@ -6,6 +6,7 @@
 #include <string>
 #include <iterator>
 #include <iostream>
+#include <map>
 using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 
@@ -18,21 +19,15 @@ using namespace std;
 //
 //
 //------------------------------------------------------------------------
-struct ecartType {
-	string nom;
-	double valeur;
-};
-struct moyenne {
-	string nom;
-	double valeur;
-};
 class Maladie
 {
 	//------------------------------------------------------------------ PRIVE
 protected:
 	//----------------------------------------------------- Attributs protégés
 	//----------------------------------------------------- Méthodes protégées
-	vector<ecartType> ecartTypes;
+	vector<double> ecartTypesDOuble;
+	vector<double> moyennes;
+	vector<map<string, int>> frequenceAttributString;
 
 	//----------------------------------------------------------------- PUBLIC
 public:
