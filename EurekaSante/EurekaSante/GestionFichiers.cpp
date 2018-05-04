@@ -30,4 +30,6 @@ bool FichierSauverEmpreintes(const string& path, const vector<Empreinte>& emprei
 	// ios::ate ajoute du contenu à la fin
 	if (!fichier.is_open()) return false;
 	
+	// [...]
+	return false;
 }
