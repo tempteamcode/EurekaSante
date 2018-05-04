@@ -24,12 +24,11 @@ bool FichierChargerEmpreintes(const string& path, vector<Empreinte>& empreintes)
 
 bool FichierSauverEmpreintes(const string& path, const vector<Empreinte>& empreintes, bool overwrite)
 {
+// Bonjour je suis un commentaire
 	fstream fichier;
 	fichier.open(path, ios::out | (overwrite ? ios::trunc : ios::ate));
 	// ios::trunc efface le contenu précédent
 	// ios::ate ajoute du contenu à la fin
 	if (!fichier.is_open()) return false;
 	
-	// [...]
-	return false;
 }
