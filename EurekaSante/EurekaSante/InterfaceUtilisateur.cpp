@@ -15,8 +15,7 @@ int main()
 	FichierChargerAttributs("HealthMeasurementDescription.txt", attributs);
 	AfficherAttributs(attributs);
 	
-	string temp;
-	cin >> temp;
 	cout << "Fermeture de EurekaSante." << endl;
+	string temp; cin >> temp;
 	return 0;
 }
