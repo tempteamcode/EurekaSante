@@ -112,11 +112,13 @@
   <ItemGroup>
     <ClCompile Include="Empreinte.cpp" />
     <ClCompile Include="GestionFichiers.cpp" />
+    <ClCompile Include="InterfaceUtilisateur.cpp" />
     <ClCompile Include="Maladie.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Empreinte.h" />
     <ClInclude Include="GestionFichiers.h" />
+    <ClInclude Include="InterfaceUtilisateur.h" />
     <ClInclude Include="Maladie.h" />
   </ItemGroup>
   <ItemGroup>

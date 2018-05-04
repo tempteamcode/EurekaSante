@@ -26,6 +26,21 @@ struct attributs
 };
 
 
+/*
+
+*/
+
+
+/*
+AttributeName; AttributeType
+NoID;ID
+A1;string
+A2;double
+A3;double
+A4;double
+*/
+
+
 bool FichierChargerEmpreintes(const string& path, vector<Empreinte>& empreintes)
 {
 	fstream fichier;
