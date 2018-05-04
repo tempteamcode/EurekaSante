@@ -33,7 +33,7 @@ public:
 	//-------------------------------------------- Constructeurs - destructeur
 	Empreinte();
 	virtual ~Empreinte();
-	void Afficher();
+	void Afficher() const;
 };
 //-------------------------------- Autres définitions dépendantes de <Empreinte>
 #endif // EMPREINTE_H
