@@ -20,14 +20,15 @@ Empreinte::~Empreinte()
 {
 }
 
-void Empreinte::Afficher() const {
-	vector<string>::const_iterator itS;
-	vector<double>::const_iterator itD;
-	for (itS = attributsString.cbegin(); itS != attributsString.cend(); ++itS) {
-		cout << itS << ";";
+void Empreinte::Afficher() {
+	vector<string>::iterator itS;
+	vector<double>::iterator itD;
+	cout << id;
+	for (itS = attributsString.begin(); itS != attributsString.end(); ++itS) {
+		cout << *itS << ",";
 	}
-	for (itD = attributsDouble.cbegin(); itD != attributsDouble.cend(); ++itD) {
-		cout << itD << ";";
+	for (itD = attributsDouble.begin(); itD != attributsDouble.end(); ++itD) {
+		cout << *itD << ",";
 	}
 	cout << endl;
 }

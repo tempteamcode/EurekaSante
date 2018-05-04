@@ -26,14 +26,14 @@ protected:
 	//----------------------------------------------------- Méthodes protégées
 	vector<string> attributsString;
 	vector<double> attributsDouble;
-	
+	int id;
 	//----------------------------------------------------------------- PUBLIC
 public:
 	//----------------------------------------------------- Méthodes publiques
 	//-------------------------------------------- Constructeurs - destructeur
 	Empreinte();
 	virtual ~Empreinte();
-	void Afficher() const;
+	void Afficher();
 };
 //-------------------------------- Autres définitions dépendantes de <Empreinte>
 #endif // EMPREINTE_H
