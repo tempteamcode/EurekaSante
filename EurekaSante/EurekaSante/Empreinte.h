@@ -19,6 +19,7 @@ using namespace std;
 //
 //
 //------------------------------------------------------------------------
+class Maladie;
 class Empreinte
 {
 	//------------------------------------------------------------------ PRIVE
@@ -37,6 +38,10 @@ public:
 	virtual ~Empreinte();
 	void Afficher() const;
 	void AjouterMaladie(Maladie* m);
+	void AjouterString(string s);
+	void AjouterDouble(double d);
+
+	friend class Maladie;
 };
 //-------------------------------- Autres définitions dépendantes de <Empreinte>
 #endif // EMPREINTE_H

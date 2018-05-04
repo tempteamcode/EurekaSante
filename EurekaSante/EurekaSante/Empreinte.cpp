@@ -36,6 +36,14 @@ void Empreinte::Afficher() const {
 void Empreinte::AjouterMaladie(Maladie* m) {
 	mesMaladies.push_back(m);
 }
+
+void Empreinte::AjouterDouble(double d) {
+	attributsDouble.push_back(d);
+}
+
+void Empreinte::AjouterString(string s) {
+	attributsString.push_back(s);
+}
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur

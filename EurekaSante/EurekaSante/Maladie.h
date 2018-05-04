@@ -20,6 +20,7 @@ using namespace std;
 //
 //
 //------------------------------------------------------------------------
+class Empreinte;
 class Maladie
 {
 	//------------------------------------------------------------------ PRIVE
@@ -30,13 +31,15 @@ protected:
 	vector<double> moyennes;
 	vector<map<string, int>> frequenceAttributString;
 	string nom;
-	vector<Empreinte*> empreintesCorrespondantes;
 	//----------------------------------------------------------------- PUBLIC
 public:
 	//----------------------------------------------------- Méthodes publiques
 	//-------------------------------------------- Constructeurs - destructeur
 	Maladie();
 	virtual ~Maladie();
+	void calculerCaracteristiques(const vector<Empreinte*> &e);
+
+	friend class Empreinte;
 };
 //-------------------------------- Autres définitions dépendantes de <Empreinte>
 #endif // EMPREINTE_H
