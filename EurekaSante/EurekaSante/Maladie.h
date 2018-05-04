@@ -7,14 +7,14 @@
 #include <iterator>
 #include <iostream>
 #include <map>
-#include "EMpreinte.h"
+#include "Empreinte.h"
 using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-
+typedef map<string, int> freqAttr;
 //------------------------------------------------------------------------
 // Rôle de la classe <Maladie>
 //
@@ -29,7 +29,7 @@ protected:
 	//----------------------------------------------------- Méthodes protégées
 	vector<double> ecartTypesDOuble;
 	vector<double> moyennes;
-	vector<map<string, int>> frequenceAttributString;
+	vector<freqAttr>frequenceAttributString;
 	string nom;
 	//----------------------------------------------------------------- PUBLIC
 public:
@@ -37,7 +37,7 @@ public:
 	//-------------------------------------------- Constructeurs - destructeur
 	Maladie();
 	virtual ~Maladie();
-	void calculerCaracteristiques(const vector<Empreinte*> &e);
+	void CalculerCaracteristiques(const vector<Empreinte*> &e);
 
 	friend class Empreinte;
 };
