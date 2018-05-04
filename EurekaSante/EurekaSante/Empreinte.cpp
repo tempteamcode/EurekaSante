@@ -23,6 +23,7 @@ Empreinte::~Empreinte()
 void Empreinte::Afficher() {
 	vector<string>::iterator itS;
 	vector<double>::iterator itD;
+	cout << id;
 	for (itS = attributsString.begin(); itS != attributsString.end(); ++itS) {
 		cout << *itS << ",";
 	}

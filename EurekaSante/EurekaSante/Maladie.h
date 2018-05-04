@@ -28,7 +28,7 @@ protected:
 	vector<double> ecartTypesDOuble;
 	vector<double> moyennes;
 	vector<map<string, int>> frequenceAttributString;
-
+	string nom;
 	//----------------------------------------------------------------- PUBLIC
 public:
 	//----------------------------------------------------- Méthodes publiques

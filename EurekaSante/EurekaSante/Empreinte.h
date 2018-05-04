@@ -26,7 +26,7 @@ protected:
 	//----------------------------------------------------- Méthodes protégées
 	vector<string> attributsString;
 	vector<double> attributsDouble;
-	
+	int id;
 	//----------------------------------------------------------------- PUBLIC
 public:
 	//----------------------------------------------------- Méthodes publiques
