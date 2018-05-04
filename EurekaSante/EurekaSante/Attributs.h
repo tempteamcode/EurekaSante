@@ -12,6 +12,7 @@ using std::string;
 class Attributs
 {
 public:
+	uint Compte() const;
 	void Ajouter(string nom, string type);
 	void Afficher() const;
 	bool IsDouble(uint index) const;
