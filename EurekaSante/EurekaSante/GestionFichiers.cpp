@@ -12,9 +12,9 @@ using std::string;
 #include <vector>
 using std::vector;
 
-#include "Empreintes.h"
+#include "Empreinte.h"
 
-bool FichierChargerEmpreintes(const string& path, vector<Empreintes>& empreintes)
+bool FichierChargerEmpreintes(const string& path, vector<Empreinte>& empreintes)
 {
 	fstream fichier;
 	fichier.open(path, ios::in);
@@ -22,7 +22,7 @@ bool FichierChargerEmpreintes(const string& path, vector<Empreintes>& empreintes
 	
 }
 
-bool FichierSauverEmpreintes(const string& path, const vector<Empreintes>& empreintes, bool overwrite)
+bool FichierSauverEmpreintes(const string& path, const vector<Empreinte>& empreintes, bool overwrite)
 {
 	fstream fichier;
 	fichier.open(path, ios::out | (overwrite ? ios::trunc : ios::ate));

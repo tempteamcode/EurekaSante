@@ -2,7 +2,9 @@
 //---------- Interface de la classe <Empreinte> (fichier Empreinte.h) ----------------
 #if ! defined ( MALADIE_H )
 #define MALADIE_H
+#include <vector>
 #include <string>
+#include <iterator>
 #include <iostream>
 using namespace std;
 //--------------------------------------------------- Interfaces utilisées
@@ -16,11 +18,11 @@ using namespace std;
 //
 //
 //------------------------------------------------------------------------
-struct attributString {
+struct ecartType {
 	string nom;
-	string valeur;
+	double valeur;
 };
-struct attributDouble {
+struct moyenne {
 	string nom;
 	double valeur;
 };
@@ -30,7 +32,7 @@ class Maladie
 protected:
 	//----------------------------------------------------- Attributs protégés
 	//----------------------------------------------------- Méthodes protégées
-	
+	vector<ecartType> ecartTypes;
 
 	//----------------------------------------------------------------- PUBLIC
 public:
