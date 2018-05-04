@@ -20,6 +20,8 @@ bool FichierChargerEmpreintes(const string& path, vector<Empreinte>& empreintes)
 	fichier.open(path, ios::in);
 	if (!fichier.is_open()) return false;
 	
+
+
 }
 
 bool FichierSauverEmpreintes(const string& path, const vector<Empreinte>& empreintes, bool overwrite)
