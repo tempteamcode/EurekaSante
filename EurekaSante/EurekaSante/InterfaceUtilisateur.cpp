@@ -1,6 +1,6 @@
 
 #include "InterfaceUtilisateur.h"
-
+#include "Attributs.h"
 #include "GestionFichiers.h"
 
 #include <iostream>
@@ -13,9 +13,10 @@ int main()
 
 	Attributs attributs;
 	FichierChargerAttributs("HealthMeasurementDescription.txt", attributs);
-	AfficherAttributs(attributs);
+	attributs.Afficher();
 	
 	cout << "Fermeture de EurekaSante." << endl;
-	string temp; cin >> temp;
+	cout << endl << "Pressez ENTREE pour terminer." << flush;
+	char fermer = cin.get();
 	return 0;
 }

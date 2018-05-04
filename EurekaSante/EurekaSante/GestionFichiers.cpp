@@ -3,12 +3,6 @@
 using std::fstream;
 using std::ios;
 
-#include "GestionFichiers.h"
-typedef unsigned int uint;
-
-
-#include "Empreinte.h"
-
 #include <map>
 using std::map;
 
@@ -16,24 +10,10 @@ using std::map;
 using std::istringstream;
 
 
-const char CSV_SEPARATOR = ';';
-
-
-/*
-AttributeName;AttributeType
-NoID;ID
-A1;string
-A2;double
-A3;double
-A4;double
-*/
-
-
-void AfficherAttributs(const Attributs& attributs) {
-	for (uint index = 0; index < attributs.indice.size(); index++) {
-		cout << '#' << index << " : " << '(' << attributs.type[index] << ") " << attributs.nom[index] << endl;
-	}
-}
+#include "Reglages.h"
+#include "Attributs.h"
+#include "Empreinte.h"
+#include "GestionFichiers.h"
 
 
 bool FichierChargerAttributs(const string& path, Attributs& attributs)
@@ -57,9 +37,7 @@ bool FichierChargerAttributs(const string& path, Attributs& attributs)
 		getline(line, nom, CSV_SEPARATOR);
 		getline(line, type);
 		
-		attributs.nom.push_back(nom);
-		attributs.type.push_back(type);
-		attributs.indice.push_back(uint(attributs.indice.size()));
+		attributs.Ajouter(nom, type);
 	}
 	
 	return true;

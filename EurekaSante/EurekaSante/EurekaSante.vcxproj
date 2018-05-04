@@ -110,16 +110,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Attributs.cpp" />
     <ClCompile Include="Empreinte.cpp" />
     <ClCompile Include="GestionFichiers.cpp" />
     <ClCompile Include="InterfaceUtilisateur.cpp" />
     <ClCompile Include="Maladie.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Attributs.h" />
     <ClInclude Include="Empreinte.h" />
     <ClInclude Include="GestionFichiers.h" />
     <ClInclude Include="InterfaceUtilisateur.h" />
     <ClInclude Include="Maladie.h" />
+    <ClInclude Include="Reglages.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="HealthMeasurementDescription.txt" />
