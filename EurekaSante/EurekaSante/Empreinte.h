@@ -18,22 +18,14 @@ using namespace std;
 //
 //
 //------------------------------------------------------------------------
-struct attributString {
-	string nom;
-	string valeur;
-};
-struct attributDouble {
-	string nom;
-	double valeur;
-};
 class Empreinte
 {
 	//------------------------------------------------------------------ PRIVE
 protected:
 	//----------------------------------------------------- Attributs protégés
 	//----------------------------------------------------- Méthodes protégées
-	vector<attributString> attributsString;
-	vector<attributDouble> attributsDouble;
+	vector<string> attributsString;
+	vector<double> attributsDouble;
 	
 	//----------------------------------------------------------------- PUBLIC
 public:
@@ -41,7 +33,7 @@ public:
 	//-------------------------------------------- Constructeurs - destructeur
 	Empreinte();
 	virtual ~Empreinte();
-	void Afficher();
+	void Afficher() const;
 };
 //-------------------------------- Autres définitions dépendantes de <Empreinte>
 #endif // EMPREINTE_H
