@@ -6,6 +6,7 @@
 #include <string>
 #include <iterator>
 #include <iostream>
+#include "Maladie.h"
 using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 
@@ -27,13 +28,15 @@ protected:
 	vector<string> attributsString;
 	vector<double> attributsDouble;
 	int id;
+	vector<Maladie*> mesMaladies;
 	//----------------------------------------------------------------- PUBLIC
 public:
 	//----------------------------------------------------- Méthodes publiques
 	//-------------------------------------------- Constructeurs - destructeur
-	Empreinte();
+	Empreinte(int ID);
 	virtual ~Empreinte();
-	void Afficher();
+	void Afficher() const;
+	void AjouterMaladie(Maladie* m);
 };
 //-------------------------------- Autres définitions dépendantes de <Empreinte>
 #endif // EMPREINTE_H

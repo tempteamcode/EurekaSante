@@ -7,6 +7,7 @@
 #include <iterator>
 #include <iostream>
 #include <map>
+#include "EMpreinte.h"
 using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 
@@ -29,6 +30,7 @@ protected:
 	vector<double> moyennes;
 	vector<map<string, int>> frequenceAttributString;
 	string nom;
+	vector<Empreinte*> empreintesCorrespondantes;
 	//----------------------------------------------------------------- PUBLIC
 public:
 	//----------------------------------------------------- Méthodes publiques
