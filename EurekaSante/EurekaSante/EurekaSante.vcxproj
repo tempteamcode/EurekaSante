@@ -119,6 +119,10 @@
     <ClInclude Include="GestionFichiers.h" />
     <ClInclude Include="Maladie.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="HealthMeasurementDescription.txt" />
+    <Text Include="HealthMeasurementsWithLabels.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

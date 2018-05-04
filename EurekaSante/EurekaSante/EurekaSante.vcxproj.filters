@@ -36,4 +36,12 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="HealthMeasurementDescription.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="HealthMeasurementsWithLabels.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

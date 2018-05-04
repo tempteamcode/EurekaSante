@@ -14,12 +14,26 @@ using std::vector;
 
 #include "Empreinte.h"
 
+#include <map>
+using std::map;
+
+
+struct attributs
+{
+	vector<string> nom;
+	vector<string> type;
+	vector<int> indice;
+};
+
+
 bool FichierChargerEmpreintes(const string& path, vector<Empreinte>& empreintes)
 {
 	fstream fichier;
 	fichier.open(path, ios::in);
 	if (!fichier.is_open()) return false;
 	
+	string line;
+
 
 
 }
