@@ -28,8 +28,12 @@ bool testFichierChargerEmpreintesMaladies()
 
 	for (auto item = empreintes.cbegin(); item != empreintes.cend(); ++item)
 	{
-		(*item)->Afficher();
+		(*item)->Afficher(attributs);
 	}
-
+	for (auto item = maladies.cbegin(); item != maladies.cend(); ++item)
+	{
+		AfficherUneMaladie(**item, attributs);
+	}
+	
 	return true;
 }
