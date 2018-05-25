@@ -17,7 +17,6 @@ void Maladie::CalculerCaracteristiques(const vector<Empreinte*> &e) {
 	vector<string>::const_iterator itS;
 	vector<double>::const_iterator itD;
 	freqAttr::iterator itM;
-	map<string, int>* m;
 	double moyenne = 0.0;
 	double ecarttype = 0.0;
 	double ecartsomme = 0.0;
@@ -38,19 +37,26 @@ void Maladie::CalculerCaracteristiques(const vector<Empreinte*> &e) {
 	}
 	Empreinte* pointeurE;
 	for (itE = e.cbegin(); itE != e.cend(); ++itE) {
+		if (itE == e.cbegin()) {
+			frequenceAttributString.resize((*itE)->attributsString.size());
+		}
+
+
 		pointeurE = *itE;
 		positionitS = 0;
 		positionitD = 0;
 		indicesomme = 0;
 		for (itS = pointeurE->attributsString.cbegin(); itS != pointeurE->attributsString.cend(); ++itS) {
-			m = &(frequenceAttributString.at(positionitS));
-			itM = m->find(*itS);
-			if (itM != m->end()) {
+			map<string, int>& m = frequenceAttributString[positionitS];
+			// map<string, int>& m = frequenceAttributString.at(positionitS);
+			/* itM = m.find(*itS);
+			if (itM != m.end()) {
 				itM->second++;
 			}
 			else {
-				m->insert(make_pair(*itS, 1));
-			}
+				m.insert(make_pair(*itS, 1));
+			} */
+			m[*itS]++;
 			positionitS++;
 		}
 
