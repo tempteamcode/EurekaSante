@@ -15,7 +15,7 @@ void AfficherUneMaladie(const Maladie& m, const Attributs& a) {
 			cout << "Moyenne : ";
 			cout << m.moyennes[idouble];
 			cout << "Ecart type : ";
-			cout << m.ecartTypesDouble[idouble];
+			cout << m.ecartTypes[idouble];
 			idouble++;
 		}
 		else {

@@ -70,7 +70,7 @@ void Maladie::CalculerCaracteristiques(const vector<Empreinte*> &e) {
 			ecartsomme += pow((valeurAttribut[j][i]-moyenne) , 2);
 		}
 		ecarttype = sqrt(ecartsomme / double(e.size()));
-		ecartTypesDouble.push_back(ecarttype);
+		ecartTypes.push_back(ecarttype);
 	}
 	delete somme;
 	delete valeurAttribut;
