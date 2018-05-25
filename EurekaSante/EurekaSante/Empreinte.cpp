@@ -21,14 +21,19 @@ Empreinte::~Empreinte()
 {
 }
 
-void Empreinte::Afficher() const {
-	vector<string>::const_iterator itS;
-	vector<double>::const_iterator itD;
-	for (itS = attributsString.cbegin(); itS != attributsString.cend(); ++itS) {
-		cout << *itS << ";";
-	}
-	for (itD = attributsDouble.cbegin(); itD != attributsDouble.cend(); ++itD) {
-		cout << *itD << ";";
+void Empreinte::Afficher(const Attributs& attributs) const {
+	uint istring = 0;
+	uint idouble = 0;
+
+	for (uint i = 0; i < attributs.Compte(); i++) {
+		cout << attributs.GetName(i) << ":";
+		if (attributs.IsDouble(i)) {
+			cout << attributsDouble[idouble++];
+		}
+		else {
+			cout << attributsString[istring++];
+		}
+		cout << ";";
 	}
 	cout << endl;
 }

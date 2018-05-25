@@ -6,6 +6,7 @@
 #include <string>
 #include <iterator>
 #include <iostream>
+#include "Attributs.h"
 using namespace std;
 class Maladie;
 //--------------------------------------------------- Interfaces utilisées
@@ -35,7 +36,7 @@ public:
 	//-------------------------------------------- Constructeurs - destructeur
 	Empreinte(int ID);
 	virtual ~Empreinte();
-	void Afficher() const;
+	void Afficher(const Attributs& attributs) const;
 	void AjouterMaladie(Maladie* m);
 	void AjouterString(string s);
 	void AjouterDouble(double d);
