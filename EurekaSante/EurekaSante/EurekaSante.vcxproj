@@ -115,11 +115,13 @@
     <ClCompile Include="GestionFichiers.cpp" />
     <ClCompile Include="InterfaceUtilisateur.cpp" />
     <ClCompile Include="Maladie.cpp" />
+    <ClCompile Include="GestionMaladies.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attributs.h" />
     <ClInclude Include="Empreinte.h" />
     <ClInclude Include="GestionFichiers.h" />
+    <ClInclude Include="GestionMaladies.h" />
     <ClInclude Include="InterfaceUtilisateur.h" />
     <ClInclude Include="Maladie.h" />
     <ClInclude Include="Reglages.h" />

@@ -16,6 +16,7 @@ public:
 	void Ajouter(string nom, string type);
 	void Afficher() const;
 	bool IsDouble(uint index) const;
+
 	
 private:
 	vector<string> noms;
