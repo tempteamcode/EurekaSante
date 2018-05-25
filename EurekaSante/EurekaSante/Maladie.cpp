@@ -20,7 +20,7 @@ void Maladie::CalculerCaracteristiques(const vector<Empreinte*> &e) {
 	int size = e.at(0)->attributsDouble.size();
 	double* somme = new double[size];
 	Empreinte* pointeurE;
-
+	//
 	for (itE = e.cbegin(); itE != e.cend(); ++itE) {
 		pointeurE = *itE;
 		int positionitS = 0;
