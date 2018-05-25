@@ -35,31 +35,18 @@ void Maladie::CalculerCaracteristiques(const vector<Empreinte*> &e) {
 	for (int j = 0; j < size; j++) {
 		somme[j] = 0;
 	}
+	frequenceAttributString.resize(e.at(0)->attributsString.size());
 	Empreinte* pointeurE;
 	for (itE = e.cbegin(); itE != e.cend(); ++itE) {
-		if (itE == e.cbegin()) {
-			frequenceAttributString.resize((*itE)->attributsString.size());
-		}
-
-
 		pointeurE = *itE;
 		positionitS = 0;
 		positionitD = 0;
 		indicesomme = 0;
 		for (itS = pointeurE->attributsString.cbegin(); itS != pointeurE->attributsString.cend(); ++itS) {
 			map<string, int>& m = frequenceAttributString[positionitS];
-			// map<string, int>& m = frequenceAttributString.at(positionitS);
-			/* itM = m.find(*itS);
-			if (itM != m.end()) {
-				itM->second++;
-			}
-			else {
-				m.insert(make_pair(*itS, 1));
-			} */
 			m[*itS]++;
 			positionitS++;
 		}
-
 		for (itD = pointeurE->attributsDouble.cbegin(); itD != pointeurE->attributsDouble.cend(); ++itD) {
 			valeurAttribut[indiceEmpreinte][indicesomme] = *itD;
 			somme[indicesomme] += *itD;
@@ -67,14 +54,23 @@ void Maladie::CalculerCaracteristiques(const vector<Empreinte*> &e) {
 		}
 		indiceEmpreinte++;
 	}
+	/*cout << "start" << endl;
+	for (size_t i = 0; i < e.size(); i++) {
+		for (int j = 0; j < size; j++) {
+			cout << valeurAttribut[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << "end" << endl;*/
 	for (int i = 0; i < size; i++) {
+		ecartsomme = 0;
 		moyenne = somme[i] / double(e.size());
 		moyennes.push_back(moyenne);
 		for (size_t j = 0; j < e.size(); j++) {
 			ecartsomme += pow((valeurAttribut[j][i]-moyenne) , 2);
 		}
 		ecarttype = sqrt(ecartsomme / double(e.size()));
-		ecartTypesDouble.push_back(ecartsomme);
+		ecartTypesDouble.push_back(ecarttype);
 	}
 	delete somme;
 	delete valeurAttribut;
