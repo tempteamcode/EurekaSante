@@ -41,6 +41,7 @@ public:
 	void CalculerCaracteristiques(const vector<Empreinte*> &e);
 
 	friend class Empreinte;
+	friend void AfficherMaladie(Maladie m);
 };
 //-------------------------------- Autres définitions dépendantes de <Empreinte>
 #endif // EMPREINTE_H
