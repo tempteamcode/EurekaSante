@@ -71,7 +71,7 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 		getline(line, nom, CSV_SEPARATOR);
 		getline(line, type);
 		
-		// pas fini
+		
 	}
 }
 
