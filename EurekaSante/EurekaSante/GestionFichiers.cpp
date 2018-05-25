@@ -50,8 +50,7 @@ NoID;A1;A2;A3;A4;Disease
 1;AA;18.7131577189311;23.0351482966652;173.707814305872;M2
 */
 
-
-bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, vector<Empreinte>& empreintes)
+bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, vector<Empreinte*>& empreintes, vector<Maladie*>& maladies)
 {
 	fstream fichier;
 	fichier.open(path, ios::in);
@@ -62,7 +61,6 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 	bool hasmaladie = (data.find(";Disease") != string::npos);
 	
 	map<string, vector<Empreinte*>> liens;
-	vector<Maladie> maladies;
 	
 	for(;;)
 	{
@@ -72,7 +70,7 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 		
 		getline(line, data, CSV_SEPARATOR);
 		int NoID = stoi(data);
-		Empreinte empreinte(NoID);
+		Empreinte* empreinte = new Empreinte(NoID);
 		
 		for (int i = 1; i < attributs.Compte(); i++) {
 			string value;
@@ -80,11 +78,11 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 
 			if (attributs.IsDouble(i)) {
 				double valued = stod(value);
-				empreinte.AjouterDouble(valued);
+				empreinte->AjouterDouble(valued);
 			}
 			else
 			{
-				empreinte.AjouterString(value);
+				empreinte->AjouterString(value);
 			}
 		}
 
@@ -93,13 +91,27 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 		if (hasmaladie) {
 			string nommaladie;
 			getline(line, nommaladie);
-			liens[nommaladie].push_back(&empreinte);
+			liens[nommaladie].push_back(empreinte);
 		}
 	}
 	
-	for (int i = 0; i < empreintes.size(); i++) {
-		
+	if (hasmaladie) {
+		for (auto item = liens.begin(); item != liens.end(); ++item)
+		{
+			auto& sesempreintes = item->second;
+
+			Maladie* maladie = new Maladie(item->first);
+			maladie->CalculerCaracteristiques(item->second);
+			maladies.push_back(maladie);
+
+			for (auto item = sesempreintes.begin(); item != sesempreintes.end(); ++item)
+			{
+				(*item)->AjouterMaladie(maladie);
+			}
+		}
 	}
+
+	// NE PAS OUBLIER DE FAIRE LES DELETE !
 }
 
 bool FichierSauverEmpreintes(const string& path, const Attributs& attributs, const vector<Empreinte>& empreintes, bool overwrite)

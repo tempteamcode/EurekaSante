@@ -13,7 +13,7 @@ using std::fstream;
 #include "Empreinte.h"
 
 bool FichierChargerAttributs(const string& path, Attributs& attributs);
-bool FichierChargerEmpreintes(const string& path, vector<Empreinte>& empreintes);
+bool FichierChargerEmpreintes(const string& path, vector<Empreinte>& empreintes, vector<Maladie*>& maladies = vector<Maladie*>());
 bool FichierSauverEmpreintes(const string& path, const vector<Empreinte>& empreintes, bool overwrite);
 
 #endif
