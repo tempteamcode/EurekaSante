@@ -59,16 +59,18 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 	
 	string data;
 	getline(fichier, data); // NoID;A1;A2;A3;A4;Disease
+	bool hasmaladie = (data.find(";Disease") != string::npos);
 	
-	map<string, Maladie> maladies;
-
+	map<string, vector<Empreinte*>> liens;
+	vector<Maladie> maladies;
+	
 	for(;;)
 	{
 		getline(fichier, data);
 		if (fichier.fail()) break;
 		istringstream line(data);
 		
-		getline(line, data, CSV_SEPARATOR); // NoID
+		getline(line, data, CSV_SEPARATOR);
 		int NoID = stoi(data);
 		Empreinte empreinte(NoID);
 		
@@ -86,14 +88,17 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 			}
 		}
 
-		string nommaladie;
-		getline(line, nommaladie);
+		empreintes.push_back(empreinte);
 
-		map[nommaladie]
-
-		empreinte.AjouterMaladie();
-
-		// pas fini
+		if (hasmaladie) {
+			string nommaladie;
+			getline(line, nommaladie);
+			liens[nommaladie].push_back(&empreinte);
+		}
+	}
+	
+	for (int i = 0; i < empreintes.size(); i++) {
+		
 	}
 }
 
