@@ -2,23 +2,15 @@
 #include "InterfaceUtilisateur.h"
 #include "Attributs.h"
 #include "GestionFichiers.h"
+#include "Tests.h"
 
 #include <iostream>
 using std::cout;
 using std::endl;
 
-
 bool test()
 {
-	Attributs attributs;
-	if (!FichierChargerAttributs("HealthMeasurementDescription.txt", attributs))
-	{
-		cout << "Erreur lors du chargement des attributs !" << endl;
-		return false;
-	}
-	attributs.Afficher();
-
-	return true;
+	return testFichierChargerEmpreintesMaladies();
 }
 
 int main()

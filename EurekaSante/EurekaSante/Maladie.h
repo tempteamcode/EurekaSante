@@ -41,7 +41,6 @@ public:
 	virtual ~Maladie();
 	void CalculerCaracteristiques(const vector<Empreinte*> &e);
 
-	friend class Empreinte;
 	friend void AfficherUneMaladie(const Maladie& m, const Attributs& a);
 
 };

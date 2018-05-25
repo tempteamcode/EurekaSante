@@ -6,8 +6,8 @@
 #include <string>
 #include <iterator>
 #include <iostream>
-#include "Maladie.h"
 using namespace std;
+class Maladie;
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes
@@ -15,7 +15,7 @@ using namespace std;
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Empreinet>
+// Rôle de la classe <Empreinte>
 //
 //
 //------------------------------------------------------------------------

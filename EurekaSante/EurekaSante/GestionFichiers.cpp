@@ -9,10 +9,6 @@ using std::map;
 #include <sstream>
 using std::istringstream;
 
-
-#include "Reglages.h"
-#include "Attributs.h"
-#include "Empreinte.h"
 #include "GestionFichiers.h"
 
 
@@ -72,7 +68,7 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 		int NoID = stoi(data);
 		Empreinte* empreinte = new Empreinte(NoID);
 		
-		for (int i = 1; i < attributs.Compte(); i++) {
+		for (uint i = 0; i < attributs.Compte(); i++) {
 			string value;
 			getline(line, value, CSV_SEPARATOR);
 

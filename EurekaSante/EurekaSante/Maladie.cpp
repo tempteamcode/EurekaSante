@@ -1,5 +1,5 @@
 #include "Maladie.h"
-
+#include "Empreinte.h"
 
 
 Maladie::Maladie(const string& nom)

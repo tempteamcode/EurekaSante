@@ -33,6 +33,9 @@
     <ClCompile Include="GestionMaladies.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Tests.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GestionFichiers.h">
@@ -56,12 +59,21 @@
     <ClInclude Include="GestionMaladies.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Tests.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="HealthMeasurementDescription.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
     <Text Include="HealthMeasurementsWithLabels.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="Test4EmpreintesMaladies.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
+    <Text Include="Test4Empreintes.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
   </ItemGroup>

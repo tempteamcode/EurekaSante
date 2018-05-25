@@ -116,6 +116,7 @@
     <ClCompile Include="InterfaceUtilisateur.cpp" />
     <ClCompile Include="Maladie.cpp" />
     <ClCompile Include="GestionMaladies.cpp" />
+    <ClCompile Include="Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attributs.h" />
@@ -125,10 +126,13 @@
     <ClInclude Include="InterfaceUtilisateur.h" />
     <ClInclude Include="Maladie.h" />
     <ClInclude Include="Reglages.h" />
+    <ClInclude Include="Tests.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="HealthMeasurementDescription.txt" />
     <Text Include="HealthMeasurementsWithLabels.txt" />
+    <Text Include="Test4Empreintes.txt" />
+    <Text Include="Test4EmpreintesMaladies.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
