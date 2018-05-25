@@ -110,6 +110,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Analyse.cpp" />
     <ClCompile Include="Attributs.cpp" />
     <ClCompile Include="Empreinte.cpp" />
     <ClCompile Include="GestionFichiers.cpp" />
@@ -119,6 +120,7 @@
     <ClCompile Include="Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Analyse.h" />
     <ClInclude Include="Attributs.h" />
     <ClInclude Include="Empreinte.h" />
     <ClInclude Include="GestionFichiers.h" />
