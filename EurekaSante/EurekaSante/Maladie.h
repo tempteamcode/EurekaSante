@@ -7,6 +7,7 @@
 #include <iterator>
 #include <iostream>
 #include <map>
+#include <math.h>
 #include "Empreinte.h"
 using namespace std;
 //--------------------------------------------------- Interfaces utilisées
@@ -27,7 +28,7 @@ class Maladie
 protected:
 	//----------------------------------------------------- Attributs protégés
 	//----------------------------------------------------- Méthodes protégées
-	vector<double> ecartTypesDOuble;
+	vector<double> ecartTypesDouble;
 	vector<double> moyennes;
 	vector<freqAttr>frequenceAttributString;
 	string nom;
