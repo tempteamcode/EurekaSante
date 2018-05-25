@@ -15,6 +15,7 @@ public:
 	uint Compte() const;
 	void Ajouter(string nom, string type);
 	void Afficher() const;
+	const string& GetName(uint index) const;
 	bool IsDouble(uint index) const;
 	
 private:

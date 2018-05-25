@@ -25,6 +25,10 @@ void Attributs::Afficher() const
 	}
 }
 
+const string& Attributs::GetName(uint index) const
+{
+	return noms[index];
+}
 bool Attributs::IsDouble(uint index) const
 {
 	return (types[index] == "double");
