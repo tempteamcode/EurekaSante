@@ -60,11 +60,10 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 	string data;
 	getline(fichier, data); // NoID;A1;A2;A3;A4;Disease
 
-	for (;;)
+	for(;;)
 	{
 		getline(fichier, data);
 		istringstream line(data);
-		if (fichier.fail()) break;
 		
 		string nom;
 		string type;
