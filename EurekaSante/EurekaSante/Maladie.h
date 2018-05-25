@@ -8,7 +8,8 @@
 #include <iostream>
 #include <map>
 #include <math.h>
-#include "Empreinte.h"
+#include "GestionMaladies.h"
+#include "Attributs.h"
 using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 
@@ -41,7 +42,8 @@ public:
 	void CalculerCaracteristiques(const vector<Empreinte*> &e);
 
 	friend class Empreinte;
-	friend void AfficherMaladie(Maladie m);
+	friend void AfficherUneMaladie(const Maladie& m, const Attributs& a);
+
 };
 //-------------------------------- Autres définitions dépendantes de <Empreinte>
 #endif // EMPREINTE_H

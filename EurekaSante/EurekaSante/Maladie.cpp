@@ -21,11 +21,12 @@ void Maladie::CalculerCaracteristiques(const vector<Empreinte*> &e) {
 	double moyenne = 0.0;
 	double ecarttype = 0.0;
 	double ecartsomme = 0.0;
-	int size = e.at(0)->attributsDouble.size();
+	int nbEmpreintes = static_cast<int>(e.size());
+	int size = static_cast<int>(e.at(0)->attributsDouble.size());
 	double* somme = new double[size];
 	double** valeurAttribut;
-	valeurAttribut = new double*[e.size];
-	for (int i = 0; i < e.size; i++) {
+	valeurAttribut = new double*[static_cast<int>(e.size())];
+	for (int i = 0; i < nbEmpreintes; i++) {
 		valeurAttribut[i] = new double[size];
 	}
 	int indicesomme = 0;
@@ -61,12 +62,12 @@ void Maladie::CalculerCaracteristiques(const vector<Empreinte*> &e) {
 		indiceEmpreinte++;
 	}
 	for (int i = 0; i < size; i++) {
-		moyenne = somme[i] / (e.size);
+		moyenne = somme[i] / double(e.size());
 		moyennes.push_back(moyenne);
-		for (int j = 0; j < e.size; j++) {
+		for (size_t j = 0; j < e.size(); j++) {
 			ecartsomme += pow((valeurAttribut[j][i]-moyenne) , 2);
 		}
-		ecarttype = sqrt(ecartsomme / e.size);
+		ecarttype = sqrt(ecartsomme / double(e.size()));
 		ecartTypesDouble.push_back(ecartsomme);
 	}
 	delete somme;

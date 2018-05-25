@@ -5,6 +5,6 @@
 #include "Attributs.h"
 using namespace std;
 
-void AfficherUneMaladie(Maladie m);
+void AfficherUneMaladie(const Maladie& m , const Attributs& a);
 
 #endif
