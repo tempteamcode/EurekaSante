@@ -29,8 +29,8 @@ bool FichierChargerAttributs(const string& path, Attributs& attributs)
 	for (;;)
 	{
 		getline(fichier, data);
-		istringstream line(data);
 		if (fichier.fail()) break;
+		istringstream line(data);
 		
 		string nom;
 		string type;
@@ -59,18 +59,40 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 	
 	string data;
 	getline(fichier, data); // NoID;A1;A2;A3;A4;Disease
+	
+	map<string, Maladie> maladies;
 
 	for(;;)
 	{
 		getline(fichier, data);
+		if (fichier.fail()) break;
 		istringstream line(data);
 		
-		string nom;
-		string type;
 		getline(line, data, CSV_SEPARATOR); // NoID
-		getline(line, nom, CSV_SEPARATOR);
-		getline(line, type);
+		int NoID = stoi(data);
+		Empreinte empreinte(NoID);
 		
+		for (int i = 1; i < attributs.Compte(); i++) {
+			string value;
+			getline(line, value, CSV_SEPARATOR);
+
+			if (attributs.IsDouble(i)) {
+				double valued = stod(value);
+				empreinte.AjouterDouble(valued);
+			}
+			else
+			{
+				empreinte.AjouterString(value);
+			}
+		}
+
+		string nommaladie;
+		getline(line, nommaladie);
+
+		map[nommaladie]
+
+		empreinte.AjouterMaladie();
+
 		// pas fini
 	}
 }

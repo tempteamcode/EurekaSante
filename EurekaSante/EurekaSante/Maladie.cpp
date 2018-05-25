@@ -2,8 +2,9 @@
 
 
 
-Maladie::Maladie()
+Maladie::Maladie(const string& nom)
 {
+	this->nom = nom;
 }
 
 

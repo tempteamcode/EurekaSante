@@ -36,7 +36,7 @@ protected:
 public:
 	//----------------------------------------------------- Méthodes publiques
 	//-------------------------------------------- Constructeurs - destructeur
-	Maladie();
+	Maladie(const string& nom);
 	virtual ~Maladie();
 	void CalculerCaracteristiques(const vector<Empreinte*> &e);
 
