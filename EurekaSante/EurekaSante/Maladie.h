@@ -29,7 +29,7 @@ class Maladie
 protected:
 	//----------------------------------------------------- Attributs protégés
 	//----------------------------------------------------- Méthodes protégées
-	vector<double> ecartTypesDouble;
+	vector<double> ecartTypes;
 	vector<double> moyennes;
 	vector<freqAttr>frequenceAttributString;
 	string nom;
@@ -42,7 +42,7 @@ public:
 	void CalculerCaracteristiques(const vector<Empreinte*> &e);
 
 	friend void AfficherUneMaladie(const Maladie& m, const Attributs& a);
-
+	friend vector<Maladie> EffectuerAnalyse(const Empreinte& empreinte);
 };
 //-------------------------------- Autres définitions dépendantes de <Empreinte>
 #endif // EMPREINTE_H

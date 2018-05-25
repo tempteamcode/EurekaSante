@@ -42,6 +42,7 @@ public:
 	void AjouterDouble(double d);
 
 	friend class Maladie;
+	friend vector<Maladie> EffectuerAnalyse(const Empreinte& empreinte);
 };
 //-------------------------------- Autres définitions dépendantes de <Empreinte>
 #endif // EMPREINTE_H
