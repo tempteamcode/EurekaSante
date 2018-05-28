@@ -3,13 +3,37 @@
 
 
 Maladie::Maladie(const string& nom)
+: nom (nom)
 {
-	this->nom = nom;
 }
-
 
 Maladie::~Maladie()
 {
+}
+
+void Maladie::Afficher(const Attributs& a) const
+{
+	cout << "Maladie : " << nom << endl;
+	
+	uint istring = 0;
+	uint idouble = 0;
+	for (uint i = 0; i < a.Compte(); i++) {
+		cout << "Attribut " << a.GetName(i) << " :" << endl;
+		
+		if (a.IsDouble(i)) {
+			cout << "  Moyenne : " << moyennes[idouble] << " ";
+			cout << "Ecart type : " << ecartTypes[idouble] << endl;
+			idouble++;
+		}
+		else {
+			const auto& fmap = frequenceAttributString[istring];
+			for (freqAttr::const_iterator itMap = fmap.cbegin(); itMap != fmap.cend(); ++itMap) {
+				cout << "  Valeur : \"" << itMap->first << "\" ";
+				cout << "Fréquence : " << itMap->second << endl;
+			}
+			istring++;
+		}
+	}
 }
 
 void Maladie::CalculerCaracteristiques(const vector<Empreinte*> &e) {

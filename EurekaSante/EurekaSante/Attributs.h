@@ -17,7 +17,6 @@ public:
 	void Afficher() const;
 	const string& GetName(uint index) const;
 	bool IsDouble(uint index) const;
-
 	
 private:
 	vector<string> noms;
@@ -25,5 +24,19 @@ private:
 	vector<uint> indices;
 };
 
+inline uint Attributs::Compte() const
+{
+	return uint(indices.size());
+}
+
+inline const string& Attributs::GetName(uint index) const
+{
+	return noms[index];
+}
+
+inline bool Attributs::IsDouble(uint index) const
+{
+	return (types[index] == "double");
+}
 
 #endif // ATTRIBUTS_H

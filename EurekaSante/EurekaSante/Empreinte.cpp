@@ -6,22 +6,23 @@
 
 //-------------------------------------------------------- Include système
 
+#include <iostream>
+using std::cout;
+using std::endl;
+
 //------------------------------------------------------ Include personnel
 
 //------------------------------------------------------------- Constantes
 //----------------------------------------------------------------- PUBLIC
 //----------------------------------------------------- Méthodes publiques
+
 Empreinte::Empreinte(int ID)
 {
 	id = ID;
 }
 
-
-Empreinte::~Empreinte()
+void Empreinte::Afficher(const Attributs& attributs) const
 {
-}
-
-void Empreinte::Afficher(const Attributs& attributs) const {
 	uint istring = 0;
 	uint idouble = 0;
 
@@ -38,17 +39,10 @@ void Empreinte::Afficher(const Attributs& attributs) const {
 	cout << endl;
 }
 
-void Empreinte::AjouterMaladie(Maladie* m) {
-	mesMaladies.push_back(m);
+Empreinte::~Empreinte()
+{
 }
 
-void Empreinte::AjouterDouble(double d) {
-	attributsDouble.push_back(d);
-}
-
-void Empreinte::AjouterString(string s) {
-	attributsString.push_back(s);
-}
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur

@@ -1,14 +1,15 @@
 #ifndef TESTS_H
 #define TESTS_H
 
-#include "InterfaceUtilisateur.h"
+#include "Reglages.h"
 #include "Attributs.h"
+#include "Empreinte.h"
+#include "Maladie.h"
+#include "InterfaceUtilisateur.h"
 #include "GestionFichiers.h"
 #include "GestionMaladies.h"
-#include "Maladie.h"
-#include "Empreinte.h"
 
-bool testFichierChargerAttributs();
-bool testFichierChargerEmpreintesMaladies();
+bool testFichierChargerAttributs(bool display);
+bool testFichierChargerEmpreintesMaladies(bool display);
 
 #endif // TESTS_H

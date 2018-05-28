@@ -17,6 +17,6 @@ using std::fstream;
 
 bool FichierChargerAttributs(const string& path, Attributs& attributs);
 bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, vector<Empreinte*>& empreintes, vector<Maladie*>& maladies = vector<Maladie*>());
-bool FichierSauverEmpreintes(const string& path, const vector<Empreinte>& empreintes, bool overwrite);
+bool FichierSauverEmpreintes(const string& path, const Attributs& attributs, const vector<Empreinte*>& empreintes, bool overwrite);
 
-#endif
+#endif // GESTIONFICHIERS_H

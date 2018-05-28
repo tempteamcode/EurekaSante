@@ -10,7 +10,7 @@ using std::endl;
 
 bool test()
 {
-	return testFichierChargerEmpreintesMaladies();
+	return testFichierChargerEmpreintesMaladies(true);
 }
 
 int main()

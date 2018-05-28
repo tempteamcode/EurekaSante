@@ -71,19 +71,16 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 		for (uint i = 0; i < attributs.Compte(); i++) {
 			string value;
 			getline(line, value, CSV_SEPARATOR);
-
+			
 			if (attributs.IsDouble(i)) {
-				double valued = stod(value);
-				empreinte->AjouterDouble(valued);
-			}
-			else
-			{
+				empreinte->AjouterDouble(stod(value));
+			} else {
 				empreinte->AjouterString(value);
 			}
 		}
-
+		
 		empreintes.push_back(empreinte);
-
+		
 		if (hasmaladie) {
 			string nommaladie;
 			getline(line, nommaladie);
@@ -95,11 +92,11 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 		for (auto item = liens.begin(); item != liens.end(); ++item)
 		{
 			auto& sesempreintes = item->second;
-
+			
 			Maladie* maladie = new Maladie(item->first);
 			maladie->CalculerCaracteristiques(item->second);
 			maladies.push_back(maladie);
-
+			
 			for (auto item = sesempreintes.begin(); item != sesempreintes.end(); ++item)
 			{
 				(*item)->AjouterMaladie(maladie);
@@ -110,7 +107,7 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 	// NE PAS OUBLIER DE FAIRE LES DELETE !
 }
 
-bool FichierSauverEmpreintes(const string& path, const Attributs& attributs, const vector<Empreinte>& empreintes, bool overwrite)
+bool FichierSauverEmpreintes(const string& path, const Attributs& attributs, const vector<Empreinte*>& empreintes, bool overwrite)
 {
 	fstream fichier;
 	fichier.open(path, ios::out | (overwrite ? ios::trunc : ios::ate));

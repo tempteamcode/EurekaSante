@@ -1,17 +1,20 @@
-#pragma once
-//---------- Interface de la classe <Empreinte> (fichier Empreinte.h) ----------------
-#if ! defined ( MALADIE_H )
+#ifndef MALADIE_H
 #define MALADIE_H
+
+//---------- Interface de la classe <Empreinte> (fichier Empreinte.h) ----------------
+
+//--------------------------------------------------- Interfaces utilisées
+
 #include <vector>
 #include <string>
 #include <iterator>
 #include <iostream>
 #include <map>
-#include <math.h>
-#include "GestionMaladies.h"
-#include "Attributs.h"
 using namespace std;
-//--------------------------------------------------- Interfaces utilisées
+#include <math.h>
+
+#include "Reglages.h"
+#include "Attributs.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -39,11 +42,11 @@ public:
 	//-------------------------------------------- Constructeurs - destructeur
 	Maladie(const string& nom);
 	virtual ~Maladie();
+	void Afficher(const Attributs& attributs) const;
 	void CalculerCaracteristiques(const vector<Empreinte*> &e);
-
-	friend void AfficherUneMaladie(const Maladie& m, const Attributs& a);
+	
 	friend vector<Maladie> EffectuerAnalyse(const Empreinte& empreinte);
 };
 //-------------------------------- Autres définitions dépendantes de <Empreinte>
-#endif // EMPREINTE_H
 
+#endif // EMPREINTE_H

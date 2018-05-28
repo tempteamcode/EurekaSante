@@ -1,11 +1,8 @@
 #ifndef GESTIONMALADIES_H
 #define GESTIONMALADIES_H
-#include <iostream>
-#include "Maladie.h"
-#include "Empreinte.h"
+
+#include "Reglages.h"
 #include "Attributs.h"
-using namespace std;
+#include "Maladie.h"
 
-void AfficherUneMaladie(const Maladie& m , const Attributs& a);
-
-#endif
+#endif // GESTIONMALADIES_H

@@ -20,7 +20,11 @@ vector<Maladie> EffectuerAnalyse(const Empreinte& empreinte)
 			double proximite = abs(valeur - moy) / et;
 			sommeproximites += proximite;
 		}
+
+		// [...]
 	}
+
+	// [...]
 
 	return maladiesAssociees;
 }

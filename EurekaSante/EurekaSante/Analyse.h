@@ -4,6 +4,7 @@
 #include <vector>
 using std::vector;
 
+#include "Reglages.h"
 #include "Empreinte.h"
 #include "Maladie.h"
 
