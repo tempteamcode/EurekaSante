@@ -13,7 +13,7 @@ private:
 	Empreinte &operator=(const Empreinte&) = delete;
 	
 	friend class Maladie;
-	friend vector<const Maladie*> EffectuerAnalyse(const Empreinte& empreinte);
+	friend vector<double> EffectuerAnalyse(const Empreinte& empreinte);
 	
 protected:
 	int id;

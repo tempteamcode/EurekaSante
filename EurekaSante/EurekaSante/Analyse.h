@@ -7,6 +7,6 @@
 
 vector<const Maladie*> maladiesConnues;
 
-vector<const Maladie*> EffectuerAnalyse(const Empreinte& empreinte);
+vector<double> EffectuerAnalyse(const Empreinte& empreinte);
 
 #endif // ANALYSE_H

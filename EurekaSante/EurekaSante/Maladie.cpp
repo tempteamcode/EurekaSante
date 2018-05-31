@@ -8,7 +8,7 @@ using std::endl;
 #include "Maladie.h"
 #include "Empreinte.h"
 
-typedef map<string, int> freqAttr;
+typedef map<string, double> freqAttr;
 
 
 void Maladie::Afficher(const Attributs& a) const
@@ -52,15 +52,17 @@ Maladie::Maladie(const string& nom, const vector<Empreinte*> &empreintes)
 	}
 	
 	frequences.resize(nbAttributsString);
+	const double poids = 1.0 / nbAttributsString;
 	for (uint ie = 0; ie < nbEmpreintes; ie++) {
-		const Empreinte e = *empreintes[ie];
-		for (uint istr = 0; istr < e.attributsString.size(); istr++) {
-			frequences[istr][e.attributsString[istr]]++;
+		const Empreinte& e = *empreintes[ie];
+		for (uint istr = 0; istr < nbAttributsString; istr++) {
+			frequences[istr][e.attributsString[istr]] += poids;
 		}
-		for (uint idbl = 0; idbl < e.attributsDouble.size(); idbl++) {
+		for (uint idbl = 0; idbl < nbAttributsDouble; idbl++) {
 			somme[idbl] += (valeurAttribut[idbl][ie] = e.attributsDouble[idbl]);
 		}
 	}
+	
 	
 	moyennes.resize(nbAttributsDouble);
 	ecartTypes.resize(nbAttributsDouble);

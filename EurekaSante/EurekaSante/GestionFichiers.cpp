@@ -20,8 +20,7 @@ bool FichierChargerAttributs(const string& path, Attributs& attributs)
 	getline(fichier, data); // AttributeName;AttributeType
 	getline(fichier, data); // NoID;ID
 	
-	for (;;)
-	{
+	for (;;) {
 		getline(fichier, data);
 		if (fichier.fail()) break;
 		istringstream line(data);
@@ -50,8 +49,7 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 	
 	map<string, vector<Empreinte*>> liens;
 	
-	for (;;)
-	{
+	for (;;) {
 		getline(fichier, data);
 		if (fichier.fail()) break;
 		istringstream line(data);
@@ -81,21 +79,21 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 	}
 	
 	if (hasmaladie) {
-		for (auto item = liens.begin(); item != liens.end(); ++item)
-		{
+		for (auto item = liens.begin(); item != liens.end(); ++item) {
 			auto& sesempreintes = item->second;
 			
 			Maladie* maladie = new Maladie(item->first, item->second);
 			maladies.push_back(maladie);
 			
-			for (auto item = sesempreintes.begin(); item != sesempreintes.end(); ++item)
-			{
+			for (auto item = sesempreintes.begin(); item != sesempreintes.end(); ++item) {
 				(*item)->AjouterMaladie(maladie);
 			}
 		}
 	}
 
 	// NE PAS OUBLIER DE FAIRE LES DELETE !
+
+	return true;
 }
 
 bool FichierSauverEmpreintes(const string& path, const Attributs& attributs, const vector<Empreinte*>& empreintes, bool overwrite)
