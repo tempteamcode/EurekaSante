@@ -8,6 +8,13 @@ class Maladie;
 
 class Empreinte
 {
+private:
+	Empreinte(const Empreinte&) = delete;
+	Empreinte &operator=(const Empreinte&) = delete;
+	
+	friend class Maladie;
+	friend vector<const Maladie*> EffectuerAnalyse(const Empreinte& empreinte);
+	
 protected:
 	int id;
 	vector<string> attributsString;
@@ -16,7 +23,7 @@ protected:
 	
 public:
 	Empreinte(int ID);
-	virtual ~Empreinte();
+	~Empreinte() = default;
 	
 	void Afficher(const Attributs& attributs) const;
 	
@@ -29,9 +36,6 @@ public:
 	void AjouterMaladie(const Maladie* m);
 	void AjouterString(const string& s);
 	void AjouterDouble(double d);
-
-	friend class Maladie;
-	friend vector<const Maladie*> EffectuerAnalyse(const Empreinte& empreinte);
 };
 
 /*

@@ -28,7 +28,3 @@ void Empreinte::Afficher(const Attributs& attributs) const
 	}
 	cout << endl;
 }
-
-Empreinte::~Empreinte()
-{
-}

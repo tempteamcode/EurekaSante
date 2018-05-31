@@ -139,7 +139,3 @@ void Maladie::CalculerCaracteristiques(const vector<Empreinte*> &e) {
 	delete valeurAttribut;
 }
 */
-
-Maladie::~Maladie()
-{
-}

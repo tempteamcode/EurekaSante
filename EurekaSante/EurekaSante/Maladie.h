@@ -11,6 +11,12 @@ class Empreinte;
 
 class Maladie
 {
+private:
+	Maladie(const Maladie&) = delete;
+	Maladie &operator=(const Maladie&) = delete;
+	
+	friend vector<const Maladie*> EffectuerAnalyse(const Empreinte& empreinte);
+	
 protected:
 	vector<double> ecartTypes;
 	vector<double> moyennes;
@@ -18,12 +24,10 @@ protected:
 	string nom;
 	
 public:
-	void Afficher(const Attributs& attributs) const;
-	
 	Maladie(const string& nom, const vector<Empreinte*> &empreintes);
-	virtual ~Maladie();
-	
-	friend vector<const Maladie*> EffectuerAnalyse(const Empreinte& empreinte);
+	~Maladie() = default;
+
+	void Afficher(const Attributs& attributs) const;
 };
 
 #endif // EMPREINTE_H
