@@ -1,11 +1,9 @@
 
+#include <map>
+using std::map;
 #include <fstream>
 using std::fstream;
 using std::ios;
-
-#include <map>
-using std::map;
-
 #include <sstream>
 using std::istringstream;
 
@@ -40,12 +38,6 @@ bool FichierChargerAttributs(const string& path, Attributs& attributs)
 }
 
 
-/*
-NoID;A1;A2;A3;A4;Disease
-0;AA;152.522201822802;147.966461981174;132.340194347595;M1
-1;AA;18.7131577189311;23.0351482966652;173.707814305872;M2
-*/
-
 bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, vector<Empreinte*>& empreintes, vector<Maladie*>& maladies)
 {
 	fstream fichier;
@@ -58,7 +50,7 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 	
 	map<string, vector<Empreinte*>> liens;
 	
-	for(;;)
+	for (;;)
 	{
 		getline(fichier, data);
 		if (fichier.fail()) break;
@@ -93,8 +85,7 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 		{
 			auto& sesempreintes = item->second;
 			
-			Maladie* maladie = new Maladie(item->first);
-			maladie->CalculerCaracteristiques(item->second);
+			Maladie* maladie = new Maladie(item->first, item->second);
 			maladies.push_back(maladie);
 			
 			for (auto item = sesempreintes.begin(); item != sesempreintes.end(); ++item)
@@ -115,6 +106,6 @@ bool FichierSauverEmpreintes(const string& path, const Attributs& attributs, con
 	// ios::ate ajoute du contenu à la fin
 	if (!fichier.is_open()) return false;
 	
-	//[...]
+	// [...]
 	return false;
 }

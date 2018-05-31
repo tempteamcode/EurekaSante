@@ -1,15 +1,15 @@
+
+#include <iostream>
+using std::cout;
+using std::endl;
+
+#include <math.h>
+
 #include "Maladie.h"
 #include "Empreinte.h"
 
+typedef map<string, int> freqAttr;
 
-Maladie::Maladie(const string& nom)
-: nom (nom)
-{
-}
-
-Maladie::~Maladie()
-{
-}
 
 void Maladie::Afficher(const Attributs& a) const
 {
@@ -18,7 +18,7 @@ void Maladie::Afficher(const Attributs& a) const
 	uint istring = 0;
 	uint idouble = 0;
 	for (uint i = 0; i < a.Compte(); i++) {
-		cout << "Attribut " << a.GetName(i) << " :" << endl;
+		cout << "Attribut " << a.GetName(i) << " :";
 		
 		if (a.IsDouble(i)) {
 			cout << "  Moyenne : " << moyennes[idouble] << " ";
@@ -26,16 +26,63 @@ void Maladie::Afficher(const Attributs& a) const
 			idouble++;
 		}
 		else {
-			const auto& fmap = frequenceAttributString[istring];
-			for (freqAttr::const_iterator itMap = fmap.cbegin(); itMap != fmap.cend(); ++itMap) {
-				cout << "  Valeur : \"" << itMap->first << "\" ";
-				cout << "Fréquence : " << itMap->second << endl;
+			const freqAttr& fmap = frequences[istring];
+			if (fmap.size() > 1) cout << endl;
+			for (freqAttr::const_iterator it = fmap.cbegin(); it != fmap.cend(); ++it) {
+				cout << "  Valeur : \"" << it->first << "\" ";
+				cout << "Frequence : " << it->second << endl;
 			}
 			istring++;
 		}
 	}
 }
 
+Maladie::Maladie(const string& nom, const vector<Empreinte*> &empreintes)
+:	nom(nom)
+{
+	uint nbEmpreintes = empreintes.size();
+	uint nbAttributsDouble = (*empreintes.cbegin())->attributsDouble.size();
+	uint nbAttributsString = (*empreintes.cbegin())->attributsString.size();
+	
+	double* somme = new double[nbAttributsDouble];
+	double** valeurAttribut = new double*[nbAttributsDouble];
+	for (uint i = 0; i < nbAttributsDouble; i++) {
+		somme[i] = 0.0;
+		valeurAttribut[i] = new double[nbEmpreintes];
+	}
+	
+	frequences.resize(nbAttributsString);
+	for (uint ie = 0; ie < nbEmpreintes; ie++) {
+		const Empreinte e = *empreintes[ie];
+		for (uint istr = 0; istr < e.attributsString.size(); istr++) {
+			frequences[istr][e.attributsString[istr]]++;
+		}
+		for (uint idbl = 0; idbl < e.attributsDouble.size(); idbl++) {
+			somme[idbl] += (valeurAttribut[idbl][ie] = e.attributsDouble[idbl]);
+		}
+	}
+	
+	moyennes.resize(nbAttributsDouble);
+	ecartTypes.resize(nbAttributsDouble);
+	for (uint i = 0; i < nbAttributsDouble; i++) {
+		double moyenne = somme[i] / nbEmpreintes;
+		moyennes.push_back(moyenne);
+		
+		double ecartsomme = 0.0;
+		double* valeurs = valeurAttribut[i];
+		for (uint j = 0; j < nbEmpreintes; j++) {
+			ecartsomme += pow((valeurs[j] - moyenne), 2);
+		}
+		
+		double ecartType = sqrt(ecartsomme / nbEmpreintes);
+		ecartTypes.push_back(ecartType);
+	}
+	
+	delete somme;
+	delete valeurAttribut;
+}
+
+/*
 void Maladie::CalculerCaracteristiques(const vector<Empreinte*> &e) {
 	vector<Empreinte*>::const_iterator itE;
 	vector<string>::const_iterator itS;
@@ -78,24 +125,21 @@ void Maladie::CalculerCaracteristiques(const vector<Empreinte*> &e) {
 		}
 		indiceEmpreinte++;
 	}
-	/*cout << "start" << endl;
-	for (size_t i = 0; i < e.size(); i++) {
-		for (int j = 0; j < size; j++) {
-			cout << valeurAttribut[i][j] << " ";
-		}
-		cout << endl;
-	}
-	cout << "end" << endl;*/
 	for (int i = 0; i < size; i++) {
 		ecartsomme = 0;
 		moyenne = somme[i] / double(e.size());
 		moyennes.push_back(moyenne);
 		for (size_t j = 0; j < e.size(); j++) {
-			ecartsomme += pow((valeurAttribut[j][i]-moyenne) , 2);
+			ecartsomme += pow((valeurAttribut[j][i] - moyenne), 2);
 		}
 		ecarttype = sqrt(ecartsomme / double(e.size()));
 		ecartTypes.push_back(ecarttype);
 	}
 	delete somme;
 	delete valeurAttribut;
+}
+*/
+
+Maladie::~Maladie()
+{
 }

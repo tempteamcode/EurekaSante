@@ -1,12 +1,15 @@
 
+#include <iostream>
+using std::cin;
+using std::cout;
+using std::flush;
+using std::endl;
+
 #include "InterfaceUtilisateur.h"
 #include "Attributs.h"
 #include "GestionFichiers.h"
 #include "Tests.h"
 
-#include <iostream>
-using std::cout;
-using std::endl;
 
 bool test()
 {

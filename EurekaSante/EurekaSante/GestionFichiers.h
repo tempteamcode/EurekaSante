@@ -1,12 +1,6 @@
 #ifndef GESTIONFICHIERS_H
 #define GESTIONFICHIERS_H
 
-#include <vector>
-using std::vector;
-
-#include <string>
-using std::string;
-
 #include <fstream>
 using std::fstream;
 

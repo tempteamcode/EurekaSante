@@ -1,12 +1,6 @@
 #ifndef ATTRIBUTS_H
 #define ATTRIBUTS_H
 
-#include <vector>
-using std::vector;
-
-#include <string>
-using std::string;
-
 #include "Reglages.h"
 
 class Attributs
@@ -24,18 +18,15 @@ private:
 	vector<uint> indices;
 };
 
-inline uint Attributs::Compte() const
-{
+inline uint Attributs::Compte() const {
 	return uint(indices.size());
 }
 
-inline const string& Attributs::GetName(uint index) const
-{
+inline const string& Attributs::GetName(uint index) const {
 	return noms[index];
 }
 
-inline bool Attributs::IsDouble(uint index) const
-{
+inline bool Attributs::IsDouble(uint index) const {
 	return (types[index] == "double");
 }
 

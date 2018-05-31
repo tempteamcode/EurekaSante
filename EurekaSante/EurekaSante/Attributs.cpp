@@ -5,6 +5,7 @@ using std::endl;
 
 #include "Attributs.h"
 
+
 void Attributs::Ajouter(string nom, string type)
 {
 	noms.push_back(nom);
