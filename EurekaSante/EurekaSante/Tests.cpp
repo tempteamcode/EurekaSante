@@ -7,7 +7,7 @@ using std::endl;
 #include "Tests.h"
 
 
-Attributs attributs;
+extern Attributs attributs;
 vector<Empreinte*> empreintes;
 vector<Empreinte*> empreintesTest;
 vector<Maladie*> maladies;

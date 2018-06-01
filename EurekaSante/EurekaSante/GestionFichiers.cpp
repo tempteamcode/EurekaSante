@@ -1,10 +1,12 @@
 
 #include <unordered_map>
 using std::unordered_map;
+#include <iostream>
+using std::cout;
+using std::endl;
 #include <fstream>
 using std::fstream;
 using std::ios;
-using std::endl;
 #include <sstream>
 using std::istringstream;
 
@@ -134,9 +136,28 @@ bool FichierSauverEmpreintes(const string& path, const Attributs& attributs, con
 }
 
 
+
+bool FichierAfficherHistorique()
+{
+	fstream fichier;
+	fichier.open(FILE_HISTORY, ios::in);
+	if (!fichier.is_open()) return false;
+
+	string line;
+	for (;;) {
+		getline(fichier, line);
+		if (fichier.fail()) break;
+		cout << line << endl;
+	}
+	
+	return true;
+}
+
+
+
 bool FichierMAJHist(const vector<string>& contenu, bool overwrite) {
 	fstream fichier;
-	fichier.open("Historique.txt", ios::app | (overwrite ? ios::trunc : ios::ate));
+	fichier.open(FILE_HISTORY, ios::app | (overwrite ? ios::trunc : ios::ate));
 	if (!fichier.is_open()) return false;
 
 	for (auto it = contenu.cbegin(); it != contenu.cend(); ++it) {

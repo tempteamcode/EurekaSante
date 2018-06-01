@@ -21,7 +21,7 @@ public:
 	~Utilisateur() = default;
 	
 	const string& Nom() const;
-	void LancerAnalyse(string nomfichier);
+	bool AnalyserFichier(string nomfichier, const Attributs& attributs);
 };
 
 inline const string& Utilisateur::Nom() const {
