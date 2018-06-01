@@ -18,6 +18,9 @@ void Utilisateur::LancerAnalyse(string nomfichier) {
 			cerr << "Erreur lors du chargement des empreintes+maladies !" << endl;
 		}
 		else {
+			Analyse a(empreintes);
+			LigneHistorique lh(this, &a);
+			FichierMAJHist(*(lh.toString()), false);
 		}
 	}
 }

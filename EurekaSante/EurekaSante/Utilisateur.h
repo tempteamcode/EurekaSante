@@ -7,6 +7,7 @@
 #include "GestionFichiers.h"
 #include <iostream>
 #include "Analyse.h"
+#include "LigneHistorique.h"
 using namespace std;
 
 class Utilisateur

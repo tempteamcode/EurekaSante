@@ -2,17 +2,19 @@
 #define LIGNEHISTORIQUE_H
 #include <time.h>
 #include <ctime>
-#include "Utilisateur.h"
 #include "Analyse.h" 
+
+class Utilisateur;
+
 class LigneHistorique
 {
 
 protected:
 	string date;
 	Utilisateur* monutilisateur;
-	//Analyse& a;
+	Analyse* a;
 public:
-	LigneHistorique(Utilisateur* utilisateur) {
+	LigneHistorique(Utilisateur* utilisateur,Analyse* analyse) {
 		time_t t;
 		time(&t);
 		tm date;
@@ -20,9 +22,8 @@ public:
 		char yyyymmdd[16];
 		std::strftime(yyyymmdd, sizeof(yyyymmdd), "%Y-%m-%d", &date);
 		this->date = yyyymmdd;
-		//date = dateJ;
 		monutilisateur = utilisateur;
-		//a = analyse;
+		a = analyse;
 	}
 	~LigneHistorique() = default;
 	vector<string>* toString();
