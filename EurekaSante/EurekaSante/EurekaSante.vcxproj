@@ -117,6 +117,8 @@
     <ClCompile Include="InterfaceUtilisateur.cpp" />
     <ClCompile Include="Maladie.cpp" />
     <ClCompile Include="GestionMaladies.cpp" />
+    <ClCompile Include="LigneHistorique.cpp" />
+    <ClCompile Include="Utilisateur.cpp" />
     <ClCompile Include="Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +127,8 @@
     <ClInclude Include="Empreinte.h" />
     <ClInclude Include="GestionFichiers.h" />
     <ClInclude Include="GestionMaladies.h" />
+    <ClInclude Include="LigneHistorique.h" />
+    <ClInclude Include="Utilisateur.h" />
     <ClInclude Include="InterfaceUtilisateur.h" />
     <ClInclude Include="Maladie.h" />
     <ClInclude Include="Reglages.h" />
