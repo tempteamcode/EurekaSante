@@ -50,7 +50,7 @@ Maladie::Maladie(const string& nom, const vector<Empreinte*> &empreintes)
 	}
 	
 	frequences.resize(nbAttributsString);
-	const double poids = 1.0 / nbAttributsString;
+	const double poids = 1.0 / nbEmpreintes;
 	for (uint ie = 0; ie < nbEmpreintes; ie++) {
 		const Empreinte& e = *empreintes[ie];
 		for (uint istr = 0; istr < nbAttributsString; istr++) {

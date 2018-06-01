@@ -22,13 +22,14 @@ unordered_map<const Maladie*, double> EffectuerAnalyse(const Empreinte& empreint
 	const vector<string>& attributsString = empreinte.AttributsString();
 	uint nbDouble = attributsDouble.size();
 	uint nbString = attributsString.size();
+	uint nbAttributs = nbDouble + nbString;
 	
 	for (auto item = maladiesConnues.cbegin(); item < maladiesConnues.cend(); ++item)
 	{
 		const Maladie& m = *(*item);
 		
 		double sommeproximites = 0.0;
-		bool possible = true;
+		// bool possible = true;
 		
 		for (uint idouble = 0; idouble < nbDouble; idouble++)
 		{
@@ -46,23 +47,24 @@ unordered_map<const Maladie*, double> EffectuerAnalyse(const Empreinte& empreint
 			}
 			
 			if (proximite < 0.0) {
-				possible = false;
-				break;
+				proximite = -1.0 / nbAttributs;
+				// possible = false;
+				// break;
 			}
 			
 			sommeproximites += proximite;
 		}
 		
-		if (possible) {
+		// if (possible) {
 			for (uint istring = 0; istring < nbString; istring++)
 			{
 				double freq = m.Frequences()[istring].at(attributsString[istring]);
 				sommeproximites += freq;
 			}
 
-			double proximite = sommeproximites / (nbDouble + nbString);
+			double proximite = sommeproximites / nbAttributs;
 			if (proximite > ANALYSE_SEUIL) resultat[*item] = proximite;
-		}
+		// }
 	}
 	
 	return resultat;

@@ -67,7 +67,7 @@ bool testEffectuerAnalyse(bool display)
 			cout << "ANALYSE DE L'EMPREINTE :" << endl;
 			e.Afficher(attributs);
 			cout << "MALADIES IDENTIFIEES :" << endl;
-
+			
 			if (resultat.size() == 0) cout << "- Aucune" << endl;
 			
 			for (auto item = resultat.cbegin(); item != resultat.cend(); ++item) {
