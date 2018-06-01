@@ -66,7 +66,7 @@ Maladie::Maladie(const string& nom, const vector<Empreinte*> &empreintes)
 	ecartTypes.resize(nbAttributsDouble);
 	for (uint i = 0; i < nbAttributsDouble; i++) {
 		double moyenne = somme[i] / nbEmpreintes;
-		moyennes.push_back(moyenne);
+		moyennes[i] = moyenne;
 		
 		double ecartsomme = 0.0;
 		double* valeurs = valeurAttribut[i];
@@ -75,7 +75,7 @@ Maladie::Maladie(const string& nom, const vector<Empreinte*> &empreintes)
 		}
 		
 		double ecartType = sqrt(ecartsomme / nbEmpreintes);
-		ecartTypes.push_back(ecartType);
+		ecartTypes[i] = ecartType;
 	}
 	
 	delete somme;

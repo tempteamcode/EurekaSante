@@ -1,5 +1,6 @@
 
 #include <iostream>
+using std::cout;
 using std::cerr;
 using std::endl;
 
@@ -8,6 +9,7 @@ using std::endl;
 
 Attributs attributs;
 vector<Empreinte*> empreintes;
+vector<Empreinte*> empreintesTest;
 vector<Maladie*> maladies;
 
 bool testFichierChargerAttributs(bool display)
@@ -42,5 +44,46 @@ bool testFichierChargerEmpreintesMaladies(bool display)
 		}
 	}
 	
+	return true;
+}
+
+bool testEffectuerAnalyse(bool display)
+{
+	if (!testFichierChargerEmpreintesMaladies(false)) return false;
+	
+	if (!FichierChargerEmpreintes("Test4Empreintes.txt", attributs, empreintesTest)) {
+		cerr << "Erreur lors du chargement des empreintes !" << endl;
+		return false;
+	}
+	
+	if (display) {
+		SetMaladiesConnues(maladies);
+		
+		for (auto item = empreintesTest.cbegin(); item != empreintesTest.cend(); ++item) {
+			const Empreinte& e = **item;
+			unordered_map<const Maladie*, double> resultat = EffectuerAnalyse(e);
+			
+			cout << endl;
+			cout << "ANALYSE DE L'EMPREINTE :" << endl;
+			e.Afficher(attributs);
+			cout << "MALADIES IDENTIFIEES :" << endl;
+
+			if (resultat.size() == 0) cout << "- Aucune" << endl;
+			
+			for (auto item = resultat.cbegin(); item != resultat.cend(); ++item) {
+				const Maladie& m = *(item->first);
+				double pourcentage = item->second * 100;
+				
+				const string& nom = m.Nom();
+				if (nom != "") {
+					cout << "- " << nom << " avec " << pourcentage << "%" << endl;
+				}
+				else {
+					cout << "- Sain a " << pourcentage << "%" << endl;
+				}
+			}
+		}
+	}
+
 	return true;
 }

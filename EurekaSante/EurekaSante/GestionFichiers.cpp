@@ -1,6 +1,6 @@
 
-#include <map>
-using std::map;
+#include <unordered_map>
+using std::unordered_map;
 #include <fstream>
 using std::fstream;
 using std::ios;
@@ -48,7 +48,7 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 	getline(fichier, data); // NoID;A1;A2;A3;A4;Disease
 	bool hasmaladie = (data.find(";Disease") != string::npos);
 	
-	map<string, vector<Empreinte*>> liens;
+	unordered_map<string, vector<Empreinte*>> liens;
 	
 	for (;;) {
 		getline(fichier, data);
