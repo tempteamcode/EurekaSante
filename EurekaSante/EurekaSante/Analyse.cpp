@@ -6,8 +6,8 @@ vector<double> EffectuerAnalyse(const Empreinte& empreinte)
 {
 	vector<double> maladiesAssociees;
 	
-	const vector<double>& attributsDouble = empreinte.attributsDouble;
-	const vector<string>& attributsString = empreinte.attributsString;
+	const vector<double>& attributsDouble = empreinte.AttributsDouble();
+	const vector<string>& attributsString = empreinte.AttributsString();
 	uint nbDouble = attributsDouble.size();
 	uint nbString = attributsString.size();
 	
@@ -20,8 +20,8 @@ vector<double> EffectuerAnalyse(const Empreinte& empreinte)
 		
 		for (uint idouble = 0; idouble < nbDouble; idouble++)
 		{
-			double et = m->ecartTypes[idouble] * 3;
-			double moy = m->moyennes[idouble];
+			double et = m->EcartTypes()[idouble] * 3;
+			double moy = m->Moyennes()[idouble];
 			
 			double valeur = attributsDouble[idouble];
 			
@@ -35,7 +35,7 @@ vector<double> EffectuerAnalyse(const Empreinte& empreinte)
 		
 		for (uint istring = 0; istring < nbString; istring++)
 		{
-			double freq = m->frequences[istring].at(attributsString[istring]);
+			double freq = m->Frequences()[istring].at(attributsString[istring]);
 			sommeproximites += freq;
 		}
 		

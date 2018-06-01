@@ -32,7 +32,7 @@ bool testFichierChargerEmpreintesMaladies(bool display)
 		cerr << "Erreur lors du chargement des empreintes+maladies !" << endl;
 		return false;
 	}
-
+	
 	if (display) {
 		for (auto item = empreintes.cbegin(); item != empreintes.cend(); ++item) {
 			(*item)->Afficher(attributs);

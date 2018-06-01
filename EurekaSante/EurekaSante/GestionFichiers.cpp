@@ -4,6 +4,7 @@ using std::map;
 #include <fstream>
 using std::fstream;
 using std::ios;
+using std::endl;
 #include <sstream>
 using std::istringstream;
 
@@ -104,6 +105,30 @@ bool FichierSauverEmpreintes(const string& path, const Attributs& attributs, con
 	// ios::ate ajoute du contenu à la fin
 	if (!fichier.is_open()) return false;
 	
-	// [...]
-	return false;
+	fichier << "NoID";
+	for (uint i = 0; i < attributs.Compte(); i++) {
+		fichier << attributs.GetName(i);
+	}
+	fichier << endl;
+	
+	uint ie = 0;
+	for (auto ite = empreintes.cbegin(); ite != empreintes.cend(); ++ite) {
+		const Empreinte& e = *(*ite);
+		fichier << ie;
+		
+		uint idouble = 0;
+		uint istring = 0;
+		for (uint ia = 0; ia < attributs.Compte(); ia++) {
+			if (attributs.IsDouble(ia)) {
+				fichier << CSV_SEPARATOR << e.AttributsDouble()[idouble++];
+			}
+			else {
+				fichier << CSV_SEPARATOR << e.AttributsString()[istring++];
+			}
+		}
+		
+		ie++;
+	}
+	
+	return true;
 }

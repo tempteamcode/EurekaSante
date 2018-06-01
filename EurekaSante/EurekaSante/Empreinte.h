@@ -12,9 +12,6 @@ private:
 	Empreinte(const Empreinte&) = delete;
 	Empreinte &operator=(const Empreinte&) = delete;
 	
-	friend class Maladie;
-	friend vector<double> EffectuerAnalyse(const Empreinte& empreinte);
-	
 protected:
 	int id;
 	vector<string> attributsString;
@@ -27,18 +24,15 @@ public:
 	
 	void Afficher(const Attributs& attributs) const;
 	
-	/*
 	const vector<string>& Empreinte::AttributsString() const;
 	const vector<double>& Empreinte::AttributsDouble() const;
 	const vector<const Maladie*>& Empreinte::Maladies() const;
-	*/
 
 	void AjouterMaladie(const Maladie* m);
 	void AjouterString(const string& s);
 	void AjouterDouble(double d);
 };
 
-/*
 inline const vector<const Maladie*>& Empreinte::Maladies() const {
 	return maladies;
 }
@@ -48,7 +42,6 @@ inline const vector<string>& Empreinte::AttributsString() const {
 inline const vector<double>& Empreinte::AttributsDouble() const {
 	return attributsDouble;
 }
-*/
 
 inline void Empreinte::AjouterMaladie(const Maladie* m) {
 	maladies.push_back(m);

@@ -8,8 +8,6 @@ using std::endl;
 #include "Maladie.h"
 #include "Empreinte.h"
 
-typedef map<string, double> freqAttr;
-
 
 void Maladie::Afficher(const Attributs& a) const
 {
@@ -41,8 +39,8 @@ Maladie::Maladie(const string& nom, const vector<Empreinte*> &empreintes)
 :	nom(nom)
 {
 	uint nbEmpreintes = empreintes.size();
-	uint nbAttributsDouble = (*empreintes.cbegin())->attributsDouble.size();
-	uint nbAttributsString = (*empreintes.cbegin())->attributsString.size();
+	uint nbAttributsDouble = (*empreintes.cbegin())->AttributsDouble().size();
+	uint nbAttributsString = (*empreintes.cbegin())->AttributsString().size();
 	
 	double* somme = new double[nbAttributsDouble];
 	double** valeurAttribut = new double*[nbAttributsDouble];
@@ -56,10 +54,10 @@ Maladie::Maladie(const string& nom, const vector<Empreinte*> &empreintes)
 	for (uint ie = 0; ie < nbEmpreintes; ie++) {
 		const Empreinte& e = *empreintes[ie];
 		for (uint istr = 0; istr < nbAttributsString; istr++) {
-			frequences[istr][e.attributsString[istr]] += poids;
+			frequences[istr][e.AttributsString()[istr]] += poids;
 		}
 		for (uint idbl = 0; idbl < nbAttributsDouble; idbl++) {
-			somme[idbl] += (valeurAttribut[idbl][ie] = e.attributsDouble[idbl]);
+			somme[idbl] += (valeurAttribut[idbl][ie] = e.AttributsDouble()[idbl]);
 		}
 	}
 	
