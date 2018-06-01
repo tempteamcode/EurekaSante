@@ -1,8 +1,8 @@
 #include "Utilisateur.h"
 
-Utilisateur::Utilisateur(const string& nom, const string& mdp) {
-	this->nom = nom;
-	this->mdp = mdp;
+Utilisateur::Utilisateur(const string& nom, const string& mdp)
+: nom(nom), mdp(mdp)
+{
 }
 
 void Utilisateur::LancerAnalyse(string nomfichier) {
@@ -19,9 +19,8 @@ void Utilisateur::LancerAnalyse(string nomfichier) {
 		}
 		else {
 			Analyse a(empreintes);
-			LigneHistorique lh(this, &a);
-			FichierMAJHist(*(lh.toString()), false);
+			LigneHistorique lh((*this), a);
+			FichierMAJHist(lh.toString(), false);
 		}
 	}
 }
-

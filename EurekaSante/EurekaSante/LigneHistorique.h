@@ -11,22 +11,12 @@ class LigneHistorique
 
 protected:
 	string date;
-	Utilisateur* monutilisateur;
-	Analyse* a;
+	const Utilisateur& utilisateur;
+	const Analyse& analyse;
 public:
-	LigneHistorique(Utilisateur* utilisateur,Analyse* analyse) {
-		time_t t;
-		time(&t);
-		tm date;
-		localtime_s(&date, &t);
-		char yyyymmdd[16];
-		std::strftime(yyyymmdd, sizeof(yyyymmdd), "%Y-%m-%d", &date);
-		this->date = yyyymmdd;
-		monutilisateur = utilisateur;
-		a = analyse;
-	}
+	LigneHistorique(const Utilisateur& utilisateur, const Analyse& analyse);
 	~LigneHistorique() = default;
-	vector<string>* toString();
+	vector<string> toString();
 };
 
 #endif // LIGNEHISTORIQUE_H

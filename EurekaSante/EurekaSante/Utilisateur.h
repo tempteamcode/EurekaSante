@@ -12,18 +12,20 @@ using namespace std;
 
 class Utilisateur
 {
-
 protected:
 	string nom;
 	string mdp;
-
+	
 public:
 	Utilisateur(const string& nom, const string& mdp);
 	~Utilisateur() = default;
-	string GetNom() {
-		return nom;
-	}
+	
+	const string& Nom() const;
 	void LancerAnalyse(string nomfichier);
 };
+
+inline const string& Utilisateur::Nom() const {
+	return nom;
+}
 
 #endif // UTILISATEUR_H
