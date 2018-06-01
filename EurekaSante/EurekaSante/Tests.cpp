@@ -30,7 +30,7 @@ bool testFichierChargerEmpreintesMaladies(bool display)
 {
 	if (!testFichierChargerAttributs(false)) return false;
 	
-	if (!FichierChargerEmpreintes("Test4EmpreintesMaladies.txt", attributs, empreintes, maladies)) {
+	if (!FichierChargerEmpreintes("HealthMeasurementsWithLabels.txt", attributs, empreintes, maladies)) {
 		cerr << "Erreur lors du chargement des empreintes+maladies !" << endl;
 		return false;
 	}
@@ -47,21 +47,33 @@ bool testFichierChargerEmpreintesMaladies(bool display)
 	return true;
 }
 
-bool testEffectuerAnalyse(bool display)
+bool testAfficherMaladiesConnues(bool display)
 {
 	if (!testFichierChargerEmpreintesMaladies(false)) return false;
+
+	MaladiesConnues(maladies);
+
+	if (display) {
+		AfficherMaladiesConnues(attributs);
+	}
+
+	return true;
+}
+
+bool testEffectuerAnalyse(bool display)
+{
+	if (!testAfficherMaladiesConnues(false)) return false;
 	
 	if (!FichierChargerEmpreintes("Test4Empreintes.txt", attributs, empreintesTest)) {
 		cerr << "Erreur lors du chargement des empreintes !" << endl;
 		return false;
 	}
 	
+	Analyse analyse(empreintesTest);
+	
 	if (display) {
-		MaladiesConnues(maladies);
-		
-		Analyse analyse(empreintesTest);
 		analyse.Afficher(attributs, empreintesTest);
 	}
-
+	
 	return true;
 }

@@ -13,7 +13,7 @@ using std::endl;
 
 bool test()
 {
-	return testEffectuerAnalyse(true);
+	return testAfficherMaladiesConnues(true);
 }
 
 int main()

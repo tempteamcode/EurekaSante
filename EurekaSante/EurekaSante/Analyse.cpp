@@ -7,18 +7,7 @@ using std::endl;
 
 const double ANALYSE_SEUIL = 0.5;
 
-
-vector<const Maladie*> maladiesConnues;
-
-void MaladiesConnues(vector<Maladie*> maladies) {
-	maladiesConnues.resize(maladies.size());
-
-	auto cit = maladiesConnues.begin();
-	for (auto it = maladies.cbegin(); it != maladies.cend(); ++it, ++cit) {
-		*cit = *it;
-	}
-}
-
+extern vector<const Maladie*> maladiesConnues;
 
 Analyse::Analyse(const vector<Empreinte*> &empreintes) {
 	uint nbEmpreintes = empreintes.size();

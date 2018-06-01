@@ -7,6 +7,7 @@ using std::map;
 #include "Reglages.h"
 #include "Empreinte.h"
 #include "Maladie.h"
+#include "GestionMaladies.h"
 
 typedef map<const Maladie*, double> mapMaladie;
 
@@ -31,8 +32,6 @@ public:
 inline const vector<mapMaladie>& Analyse::Resultats() const {
 	return resultats;
 }
-
-void MaladiesConnues(vector<Maladie*> maladies);
 
 void EffectuerAnalyse(mapMaladie& resultat, const Empreinte& empreinte);
 

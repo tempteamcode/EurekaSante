@@ -11,12 +11,17 @@ using std::endl;
 
 void Maladie::Afficher(const Attributs& a) const
 {
-	cout << "Maladie : " << nom << endl;
+	if (nom != "") {
+		cout << "Maladie : " << nom << endl;
+	}
+	else {
+		cout << "Profil sain : " << endl;
+	}
 	
 	uint istring = 0;
 	uint idouble = 0;
 	for (uint i = 0; i < a.Compte(); i++) {
-		cout << "Attribut " << a.GetName(i) << " :";
+		cout << a.GetName(i) << " :";
 		
 		if (a.IsDouble(i)) {
 			cout << "  Moyenne : " << moyennes[idouble] << " ";
@@ -33,6 +38,7 @@ void Maladie::Afficher(const Attributs& a) const
 			istring++;
 		}
 	}
+	cout << endl;
 }
 
 Maladie::Maladie(const string& nom, const vector<Empreinte*> &empreintes)

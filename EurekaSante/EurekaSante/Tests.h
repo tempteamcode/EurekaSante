@@ -12,6 +12,7 @@
 
 bool testFichierChargerAttributs(bool display);
 bool testFichierChargerEmpreintesMaladies(bool display);
+bool testAfficherMaladiesConnues(bool display);
 bool testEffectuerAnalyse(bool display);
 
 #endif // TESTS_H

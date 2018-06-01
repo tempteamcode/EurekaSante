@@ -1,11 +1,12 @@
 #ifndef GESTIONMALADIES_H
 #define GESTIONMALADIES_H
-#include <iostream>
-#include "Maladie.h"
-#include "Empreinte.h"
+
 #include "Attributs.h"
-using namespace std;
+#include "Empreinte.h"
+#include "Maladie.h"
 
+void MaladiesConnues(vector<Maladie*> maladies);
 
+void AfficherMaladiesConnues(const Attributs& attributs);
 
 #endif
