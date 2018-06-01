@@ -18,10 +18,11 @@ vector<string> LigneHistorique::toString() {
 	vector<string> contenu;
 
 	contenu.push_back("L'utilisateur " + utilisateur.Nom() + " a fait les analyses ci-dessous a " + date + " :");
-	vector<mapMaladie> map = analyse.Resultats();
-	for (uint i = 0; i < map.size(); i++) {
+	vector<mapMaladie> maps = analyse.Resultats();
+	for (uint i = 0; i < maps.size(); i++) {
 		contenu.push_back("\tPour l'empreinte " + to_string(i) + " de cette analyse, le resultat est ci-dessous : ");
-		for (auto it = map[i].cbegin(); it != map[i].cend(); ++it) {
+		if (maps[i].size() == 0) contenu.push_back("\t\tAucun profil correspondant");
+		for (auto it = maps[i].cbegin(); it != maps[i].cend(); ++it) {
 			if (it->first->Nom() != "") {
 				contenu.push_back("\t\t"+it->first->Nom() + " : " + to_string(it->second * 100.0) + "%");
 			}

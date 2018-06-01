@@ -14,7 +14,7 @@ vector<Maladie*> maladies;
 
 bool testFichierChargerAttributs(bool display)
 {
-	if (!FichierChargerAttributs("HealthMeasurementDescription.txt", attributs)) {
+	if (!FichierChargerAttributs(FILE_ATTRIBUTS, attributs)) {
 		cerr << "Erreur lors du chargement des attributs !" << endl;
 		return false;
 	}
@@ -30,7 +30,7 @@ bool testFichierChargerEmpreintesMaladies(bool display)
 {
 	if (!testFichierChargerAttributs(false)) return false;
 	
-	if (!FichierChargerEmpreintes("HealthMeasurementsWithLabels.txt", attributs, empreintes, maladies)) {
+	if (!FichierChargerEmpreintes(FILE_EMPREINTESMALADIES, attributs, empreintes, maladies)) {
 		cerr << "Erreur lors du chargement des empreintes+maladies !" << endl;
 		return false;
 	}
@@ -77,3 +77,23 @@ bool testEffectuerAnalyse(bool display)
 	
 	return true;
 }
+
+/*
+bool testEffectuerAnalyses(bool display)
+{
+	if (!testAfficherMaladiesConnues(false)) return false;
+	
+	if (!FichierChargerEmpreintes(FILE_EMPREINTESMALADIES, attributs, empreintesTest)) {
+		cerr << "Erreur lors du chargement des empreintes !" << endl;
+		return false;
+	}
+	
+	Analyse analyse(empreintesTest);
+	
+	if (display) {
+		analyse.Afficher(attributs, empreintesTest);
+	}
+	
+	return true;
+}
+*/

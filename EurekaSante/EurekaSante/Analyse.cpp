@@ -79,7 +79,7 @@ void EffectuerAnalyse(mapMaladie& resultat, const Empreinte& empreinte)
 			}
 			
 			if (proximite < 0.0) {
-				proximite = -1.0 / nbAttributs;
+				proximite = -1.0;
 				// possible = false;
 				// break;
 			}

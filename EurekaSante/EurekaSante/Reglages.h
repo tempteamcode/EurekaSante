@@ -10,7 +10,10 @@ using std::string;
 typedef unsigned int uint;
 
 const char CSV_SEPARATOR = ';';
+
 const string FILE_HISTORY = "Historique.txt";
+const string FILE_ATTRIBUTS = "HealthMeasurementDescription.txt";
+const string FILE_EMPREINTESMALADIES = "HealthMeasurementsWithLabels.txt";
 
 /*
 #include <string>
