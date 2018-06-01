@@ -57,32 +57,10 @@ bool testEffectuerAnalyse(bool display)
 	}
 	
 	if (display) {
-		SetMaladiesConnues(maladies);
+		MaladiesConnues(maladies);
 		
-		for (auto item = empreintesTest.cbegin(); item != empreintesTest.cend(); ++item) {
-			const Empreinte& e = **item;
-			unordered_map<const Maladie*, double> resultat = EffectuerAnalyse(e);
-			
-			cout << endl;
-			cout << "ANALYSE DE L'EMPREINTE :" << endl;
-			e.Afficher(attributs);
-			cout << "MALADIES IDENTIFIEES :" << endl;
-			
-			if (resultat.size() == 0) cout << "- Aucune" << endl;
-			
-			for (auto item = resultat.cbegin(); item != resultat.cend(); ++item) {
-				const Maladie& m = *(item->first);
-				double pourcentage = item->second * 100;
-				
-				const string& nom = m.Nom();
-				if (nom != "") {
-					cout << "- " << nom << " avec " << pourcentage << "%" << endl;
-				}
-				else {
-					cout << "- Sain a " << pourcentage << "%" << endl;
-				}
-			}
-		}
+		Analyse analyse(empreintesTest);
+		analyse.Afficher(attributs, empreintesTest);
 	}
 
 	return true;

@@ -1,15 +1,39 @@
 #ifndef ANALYSE_H
 #define ANALYSE_H
 
-#include <unordered_map>
-using std::unordered_map;
+#include <map>
+using std::map;
 
 #include "Reglages.h"
 #include "Empreinte.h"
 #include "Maladie.h"
 
-unordered_map<const Maladie*, double> EffectuerAnalyse(const Empreinte& empreinte);
+typedef map<const Maladie*, double> mapMaladie;
 
-void SetMaladiesConnues(vector<Maladie*> maladies);
+class Analyse
+{
+private:
+	Analyse(const Analyse&) = delete;
+	Analyse &operator=(const Analyse&) = delete;
+	
+protected:
+	vector<mapMaladie> resultats;
+	
+public:
+	Analyse(const vector<Empreinte*>& empreintes);
+	~Analyse() = default;
+	
+	const vector<mapMaladie>& Resultats() const;
+	
+	void Afficher(const Attributs& attributs, const vector<Empreinte*> &empreintes) const;
+};
+
+inline const vector<mapMaladie>& Analyse::Resultats() const {
+	return resultats;
+}
+
+void MaladiesConnues(vector<Maladie*> maladies);
+
+void EffectuerAnalyse(mapMaladie& resultat, const Empreinte& empreinte);
 
 #endif // ANALYSE_H

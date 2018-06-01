@@ -1,11 +1,16 @@
 
+#include <iostream>
+using std::cout;
+using std::endl;
+
 #include "Analyse.h"
 
 const double ANALYSE_SEUIL = 0.5;
 
+
 vector<const Maladie*> maladiesConnues;
 
-void SetMaladiesConnues(vector<Maladie*> maladies) {
+void MaladiesConnues(vector<Maladie*> maladies) {
 	maladiesConnues.resize(maladies.size());
 
 	auto cit = maladiesConnues.begin();
@@ -14,10 +19,48 @@ void SetMaladiesConnues(vector<Maladie*> maladies) {
 	}
 }
 
-unordered_map<const Maladie*, double> EffectuerAnalyse(const Empreinte& empreinte)
-{
-	unordered_map<const Maladie*, double> resultat;
 
+Analyse::Analyse(const vector<Empreinte*> &empreintes) {
+	uint nbEmpreintes = empreintes.size();
+	resultats.resize(nbEmpreintes);
+	
+	auto cit = empreintes.cbegin();
+	for (auto it = resultats.begin(); it != resultats.end(); ++cit, ++it) {
+		EffectuerAnalyse(*it, *(*cit));
+	}
+}
+
+void Analyse::Afficher(const Attributs& attributs, const vector<Empreinte*> &empreintes) const {
+	auto cit = resultats.cbegin();
+	for (auto it = empreintes.cbegin(); it != empreintes.cend(); ++it, ++cit) {
+		const Empreinte& e = *(*it);
+		
+		cout << endl;
+		cout << "ANALYSE DE L'EMPREINTE :" << endl;
+		e.Afficher(attributs);
+		cout << "MALADIES IDENTIFIEES :" << endl;
+		
+		const mapMaladie& resultat = *cit;
+		if (resultat.size() == 0) cout << "- Aucune" << endl;
+
+		for (auto item = resultat.cbegin(); item != resultat.cend(); ++item) {
+			const Maladie& m = *(item->first);
+			double pourcentage = item->second * 100;
+
+			const string& nom = m.Nom();
+			if (nom != "") {
+				cout << "- " << nom << " avec " << pourcentage << "%" << endl;
+			}
+			else {
+				cout << "- Sain a " << pourcentage << "%" << endl;
+			}
+		}
+	}
+}
+
+
+void EffectuerAnalyse(mapMaladie& resultat, const Empreinte& empreinte)
+{
 	const vector<double>& attributsDouble = empreinte.AttributsDouble();
 	const vector<string>& attributsString = empreinte.AttributsString();
 	uint nbDouble = attributsDouble.size();
@@ -61,11 +104,9 @@ unordered_map<const Maladie*, double> EffectuerAnalyse(const Empreinte& empreint
 				double freq = m.Frequences()[istring].at(attributsString[istring]);
 				sommeproximites += freq;
 			}
-
+			
 			double proximite = sommeproximites / nbAttributs;
 			if (proximite > ANALYSE_SEUIL) resultat[*item] = proximite;
 		// }
 	}
-	
-	return resultat;
 }
