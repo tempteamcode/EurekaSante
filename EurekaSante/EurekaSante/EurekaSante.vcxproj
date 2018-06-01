@@ -139,6 +139,7 @@
     <Text Include="HealthMeasurementsWithLabels.txt" />
     <Text Include="Test4Empreintes.txt" />
     <Text Include="Test4EmpreintesMaladies.txt" />
+    <Text Include="Historique.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

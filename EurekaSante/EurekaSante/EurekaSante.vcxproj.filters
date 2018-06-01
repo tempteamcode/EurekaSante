@@ -94,5 +94,8 @@
     <Text Include="Test4Empreintes.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
+    <Text Include="Historique.txt">
+      <Filter>Fichiers de ressources</Filter>
+    </Text>
   </ItemGroup>
 </Project>

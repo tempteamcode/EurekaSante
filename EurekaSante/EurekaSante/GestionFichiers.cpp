@@ -132,3 +132,14 @@ bool FichierSauverEmpreintes(const string& path, const Attributs& attributs, con
 	
 	return true;
 }
+
+
+bool FichierMAJHist(const vector<string>& contenu, bool overwrite) {
+	fstream fichier;
+	fichier.open("Historique.txt", ios::app | (overwrite ? ios::trunc : ios::ate));
+	if (!fichier.is_open()) return false;
+	for (size_t i = 0; i < contenu.size(); i++) {
+		fichier << contenu[i] << endl;
+	}
+	return true;
+}
