@@ -1,4 +1,4 @@
-
+#define DEV
 #include <iostream>
 using std::cin;
 using std::cout;
@@ -22,15 +22,15 @@ bool InitialiserMaladiesConnues(string nomfichier)
 {
 	vector<Empreinte*> empreintes;
 	vector<Maladie*> maladies;
-	
 	if (!FichierChargerEmpreintes(nomfichier, attributs, empreintes, maladies)) {
 		cerr << "Erreur lors du chargement des empreintes+maladies !" << endl;
 		return false;
 	}
-	
-	FichierDechargerEmpreintes(empreintes);
+
 	MaladiesConnues(maladies);
-	
+
+	// TODO : delete[] empreintes;
+
 	return true;
 }
 
@@ -57,7 +57,7 @@ bool Connexion()
 	string mdp;
 	int choix;
 	while (true) {
-		cout << "Connexion" << endl;
+		cout << "Connexion :" << endl;
 		cout << "Nom d'utilisateur : " << flush; cin >> nom;
 		cout << "Mot de passe : " << flush; cin >> mdp;
 		cout << endl;
@@ -73,7 +73,7 @@ bool Connexion()
 		}
 		cout << endl;
 		cout << "Mauvaise combinaison identifiant/mdp" << endl;
-		cout << "Voulez-vous tenter de vous reconnecter ?" << endl;
+		cout << "Voulez-vous tentez de vous reconnecter ?" << endl;
 		cout << "1. Oui" << endl;
 		cout << "2. Non" << endl;
 		cout << endl;
@@ -81,9 +81,9 @@ bool Connexion()
 		if (choix == 2) return false;
 	}
 }
-
 void ApplicationHome()
 {
+	cout << endl;
 	for (;;) {
 		if (!Connexion()) return;
 		while (utilisateurcourant != nullptr) {
@@ -100,7 +100,7 @@ void ApplicationHome()
 			}
 			cout << endl;
 			cout << "Que faire ?" << endl;
-			
+			int next;
 			uint id;
 			cin >> id;
 
@@ -112,7 +112,6 @@ void ApplicationHome()
 				utilisateurcourant->Deconnexion();
 				utilisateurcourant = nullptr;
 				break;
-
 			case 1:
 				FichierAfficherHistorique();
 				break;
@@ -154,15 +153,62 @@ void ApplicationHome()
 
 }
 
+void ApplicationTest() {
+	cout << endl;
+	while (true) {
+		cout << "0. Quitter" << endl;
+		cout << "1. Test : Charger un fichier d'empreintes maladies " << endl;
+		cout << "2. Test : Afficher les maladies connues par la base " << endl;
+		cout << "3. Test : Effectuer une analyse " << endl;
+		cout << "4. Test : Charger des attributs" << endl;
+		cout << endl;
+
+		uint id;
+		cin >> id;
+		switch (id)
+		{
+		case 0:
+			int choix;
+			cout << endl;
+			cout << "Voulez-vous quitter ?" << endl;
+			cout << "1. Oui" << endl;
+			cout << "2. Non" << endl;
+			cout << endl;
+			cin >> choix;
+			if (choix == 1) return;
+			break;
+		case 1:
+			testFichierChargerEmpreintesMaladies(true);
+			break;
+		case 2:
+			testAfficherMaladiesConnues(true);
+			break;
+		case 3:
+			testEffectuerAnalyse(true);
+			break;
+		case 4:
+			testFichierChargerAttributs(true);
+			break;
+		}
+		if (id) {
+			cout << endl;
+			system("pause");
+			cout << endl;
+		}
+	} 
+}
 
 bool test()
 {
-	// if (!InitialiserApplication()) return false;
 	
-	return testEffectuerAnalyses(true);
+	#ifdef DEV
+		cout << "En mode DEVELOPPEUR" << endl;
+		ApplicationTest();
+	#else
+		if (!InitialiserApplication()) return false;
+		ApplicationHome();
+	#endif
 
-	//ApplicationHome();
-	
 	return true;
 }
 
