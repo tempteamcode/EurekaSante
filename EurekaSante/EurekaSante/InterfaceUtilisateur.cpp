@@ -1,4 +1,3 @@
-#define DEV
 #include <iostream>
 using std::cin;
 using std::cout;
@@ -27,9 +26,8 @@ bool InitialiserMaladiesConnues(string nomfichier)
 		return false;
 	}
 
+	FichierDechargerEmpreintes(empreintes);
 	MaladiesConnues(maladies);
-
-	// TODO : delete[] empreintes;
 
 	return true;
 }
@@ -57,7 +55,7 @@ bool Connexion()
 	string mdp;
 	int choix;
 	while (true) {
-		cout << "Connexion :" << endl;
+		cout << "Connexion" << endl;
 		cout << "Nom d'utilisateur : " << flush; cin >> nom;
 		cout << "Mot de passe : " << flush; cin >> mdp;
 		cout << endl;
@@ -112,10 +110,11 @@ void ApplicationHome()
 				utilisateurcourant->Deconnexion();
 				utilisateurcourant = nullptr;
 				break;
+				
 			case 1:
 				FichierAfficherHistorique();
 				break;
-
+				
 			case 2:
 				AfficherMaladiesConnues(attributs);
 				break;
@@ -134,13 +133,13 @@ void ApplicationHome()
 				InitialiserMaladiesConnues(nomfichier);
 				break;
 			}
-			if (id) {
+			if (id != 0) {
 				cout << endl;
 				system("pause");
 				cout << endl;
 			}
 		}
-
+		
 		int choix;
 		cout << endl;
 		cout << "Voulez-vous vous reconnecter ?" << endl;
@@ -155,28 +154,20 @@ void ApplicationHome()
 
 void ApplicationTest() {
 	cout << endl;
-	while (true) {
+	for (;;) {
 		cout << "0. Quitter" << endl;
 		cout << "1. Test : Charger un fichier d'empreintes maladies " << endl;
 		cout << "2. Test : Afficher les maladies connues par la base " << endl;
 		cout << "3. Test : Effectuer une analyse " << endl;
 		cout << "4. Test : Charger des attributs" << endl;
 		cout << endl;
-
+		
 		uint id;
 		cin >> id;
 		switch (id)
 		{
 		case 0:
-			int choix;
-			cout << endl;
-			cout << "Voulez-vous quitter ?" << endl;
-			cout << "1. Oui" << endl;
-			cout << "2. Non" << endl;
-			cout << endl;
-			cin >> choix;
-			if (choix == 1) return;
-			break;
+			return;
 		case 1:
 			testFichierChargerEmpreintesMaladies(true);
 			break;
@@ -190,32 +181,34 @@ void ApplicationTest() {
 			testFichierChargerAttributs(true);
 			break;
 		}
-		if (id) {
-			cout << endl;
-			system("pause");
-			cout << endl;
-		}
+		
+		cout << endl;
+		system("pause");
+		cout << endl;
 	} 
 }
 
 bool test()
 {
-	
 	#ifdef DEV
-		cout << "En mode DEVELOPPEUR" << endl;
 		ApplicationTest();
 	#else
 		if (!InitialiserApplication()) return false;
 		ApplicationHome();
 	#endif
-
+	
 	return true;
 }
 
+#ifdef DEV
+#define MSG_Welcome "Demarrage de EurekaSante en mode developpeur."
+#else
+#define MSG_Welcome "Demarrage de EurekaSante."
+#endif
 
 int main()
 {
-	cout << "Demarrage de EurekaSante." << endl;
+	cout << MSG_Welcome << endl;
 	
 	
 	cout << endl;
