@@ -1,4 +1,4 @@
-
+#define DEV
 #include <iostream>
 using std::cin;
 using std::cout;
@@ -81,9 +81,9 @@ bool Connexion()
 		if (choix == 2) return false;
 	}
 }
-
 void ApplicationHome()
 {
+	cout << endl;
 	for (;;) {
 		if (!Connexion()) return;
 		while (utilisateurcourant != nullptr) {
@@ -153,13 +153,62 @@ void ApplicationHome()
 
 }
 
+void ApplicationTest() {
+	cout << endl;
+	while (true) {
+		cout << "0. Quitter" << endl;
+		cout << "1. Test : Charger un fichier d'empreintes maladies " << endl;
+		cout << "2. Test : Afficher les maladies connues par la base " << endl;
+		cout << "3. Test : Effectuer une analyse " << endl;
+		cout << "4. Test : Charger des attributs" << endl;
+		cout << endl;
+
+		uint id;
+		cin >> id;
+		switch (id)
+		{
+		case 0:
+			int choix;
+			cout << endl;
+			cout << "Voulez-vous quitter ?" << endl;
+			cout << "1. Oui" << endl;
+			cout << "2. Non" << endl;
+			cout << endl;
+			cin >> choix;
+			if (choix == 1) return;
+			break;
+		case 1:
+			testFichierChargerEmpreintesMaladies(true);
+			break;
+		case 2:
+			testAfficherMaladiesConnues(true);
+			break;
+		case 3:
+			testEffectuerAnalyse(true);
+			break;
+		case 4:
+			testFichierChargerAttributs(true);
+			break;
+		}
+		if (id) {
+			cout << endl;
+			system("pause");
+			cout << endl;
+		}
+	} 
+}
 
 bool test()
 {
-	if (!InitialiserApplication()) return false;
 	
-	ApplicationHome();
-	
+	#ifdef DEV
+		cout << "En mode DEVELOPPEUR" << endl;
+		ApplicationTest();
+	#else
+		if (!InitialiserApplication()) return false;
+		ApplicationHome();
+	#endif
+
 	return true;
 }
 
