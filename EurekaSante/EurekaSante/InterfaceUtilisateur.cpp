@@ -55,71 +55,102 @@ bool Connexion()
 {
 	string nom;
 	string mdp;
-	
-	cout << "Connexion :" << endl;
-	cout << "Nom d'utilisateur : " << flush; cin >> nom;
-	cout << "Mot de passe : " << flush; cin >> mdp;
-	
-	utilisateurcourant = nullptr;
-	for (auto it = utilisateurs.begin(); it != utilisateurs.end(); ++it) {
-		if (it->Nom() == nom) {
-			if (it->Connexion(mdp)) {
-				utilisateurcourant = &(*it);
-				return true;
+	int choix;
+	while (true) {
+		cout << "Connexion :" << endl;
+		cout << "Nom d'utilisateur : " << flush; cin >> nom;
+		cout << "Mot de passe : " << flush; cin >> mdp;
+		cout << endl;
+
+		utilisateurcourant = nullptr;
+		for (auto it = utilisateurs.begin(); it != utilisateurs.end(); ++it) {
+			if (it->Nom() == nom) {
+				if (it->Connexion(mdp)) {
+					utilisateurcourant = &(*it);
+					return true;
+				}
 			}
 		}
+		cout << endl;
+		cout << "Mauvaise combinaison identifiant/mdp" << endl;
+		cout << "Voulez-vous tentez de vous reconnecter ?" << endl;
+		cout << "1. Oui" << endl;
+		cout << "2. Non" << endl;
+		cout << endl;
+		cin >> choix;
+		if (choix == 2) return false;
 	}
-	
-	return false;
 }
 
 void ApplicationHome()
 {
-	if (!Connexion()) return;
-	
-	cout << "1. Afficher Historique" << endl;
-	cout << "2. Afficher Maladies" << endl;
-	cout << "3. Analyser des empreintes" << endl;
+	for (;;) {
+		if (!Connexion()) return;
+		while (utilisateurcourant != nullptr) {
 
-	bool admin = utilisateurcourant->Nom() == "admin";
-	
-	if (admin) {
-		cout << "4. Modifier la base des maladies" << endl;
+			cout << "0. Deconnexion" << endl;
+			cout << "1. Afficher Historique" << endl;
+			cout << "2. Afficher Maladies" << endl;
+			cout << "3. Analyser des empreintes" << endl;
+
+			bool admin = utilisateurcourant->Nom() == "admin";
+
+			if (admin) {
+				cout << "4. Modifier la base des maladies" << endl;
+			}
+			cout << endl;
+			cout << "Que faire ?" << endl;
+			int next;
+			uint id;
+			cin >> id;
+
+			string nomfichier;
+
+			switch (id)
+			{
+			case 0:
+				utilisateurcourant->Deconnexion();
+				utilisateurcourant = nullptr;
+				break;
+			case 1:
+				FichierAfficherHistorique();
+				break;
+
+			case 2:
+				AfficherMaladiesConnues(attributs);
+				break;
+
+			case 3:
+				cout << "Nom du fichier a analyser : " << flush;
+				cin >> nomfichier;
+
+				utilisateurcourant->AnalyserFichier(nomfichier, attributs);
+				break;
+
+			case 4: if (!admin) break;
+				cout << "Nom du fichier a charger : " << flush;
+				cin >> nomfichier;
+
+				InitialiserMaladiesConnues(nomfichier);
+				break;
+			}
+			if (id) {
+				cout << endl;
+				system("pause");
+				cout << endl;
+			}
+		}
+
+		int choix;
+		cout << endl;
+		cout << "Voulez-vous vous reconnecter ?" << endl;
+		cout << "1. Oui" << endl;
+		cout << "2. Non" << endl;
+		cout << endl;
+		cin >> choix;
+		if (choix == 2) return;
 	}
 
-	cout << "Que faire ?" << endl;
-
-	uint id;
-	cin >> id;
-	
-	string nomfichier;
-
-	switch (id)
-	{
-		case 1:
-			FichierAfficherHistorique();
-			break;
-
-		case 2:
-			AfficherMaladiesConnues(attributs);
-			break;
-
-		case 3:
-			cout << "Nom du fichier a analyser : " << flush;
-			cin >> nomfichier;
-			
-			utilisateurcourant->AnalyserFichier(nomfichier, attributs);
-			break;
-
-		case 4: if (!admin) break;
-			cout << "Nom du fichier a charger : " << flush;
-			cin >> nomfichier;
-			
-			InitialiserMaladiesConnues(nomfichier);
-			break;
-	}
-
-	utilisateurcourant->Deconnexion();
 }
 
 
@@ -128,10 +159,6 @@ bool test()
 	if (!InitialiserApplication()) return false;
 	
 	ApplicationHome();
-	
-	cout << "En attente de toto" << endl;
-	int toto;
-	cin >> toto;
 	
 	return true;
 }
@@ -150,7 +177,6 @@ int main()
 	
 	
 	cout << "Fermeture de EurekaSante." << endl;
-	cout << endl << "Pressez ENTREE pour terminer." << flush;
-	char fermer = cin.get();
+	system("pause");
 	return 0;
 }

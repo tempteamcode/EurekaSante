@@ -17,6 +17,8 @@ bool Utilisateur::AnalyserFichier(string nomfichier, const Attributs& att)
 	}
 
 	Analyse a(empreintes);
+	a.Afficher(att, empreintes);
+
 	LigneHistorique lh((*this), a);
 	FichierMAJHist(lh.toString(), false);
 	
