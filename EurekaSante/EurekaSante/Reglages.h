@@ -13,8 +13,8 @@ typedef unsigned int uint;
 const char CSV_SEPARATOR = ';';
 
 const string FILE_HISTORY = "Historique.txt";
-const string FILE_ATTRIBUTS = "HealthMeasurementDescription.txt";
-const string FILE_EMPREINTESMALADIES = "HealthMeasurementsWithLabels.txt";
+const string FILE_ATTRIBUTS = "C:\\Temp\\bcpdm.csvattr"; // "HealthMeasurementDescription.txt";
+const string FILE_EMPREINTESMALADIES = "C:\\Temp\\bcpdm.csv"; // "HealthMeasurementsWithLabels.txt";
 
 /*
 #include <string>

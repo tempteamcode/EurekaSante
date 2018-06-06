@@ -170,10 +170,10 @@ bool FichierAjouterHistorique(const vector<string>& contenu)
 {
 	fstream fichier; fichier.open(FILE_HISTORY, ios::app | ios::ate);
 	if (!fichier.is_open()) return false;
-
+	
 	for (auto it = contenu.cbegin(); it != contenu.cend(); ++it) {
 		fichier << (*it) << endl;
 	}
-
+	
 	return true;
 }

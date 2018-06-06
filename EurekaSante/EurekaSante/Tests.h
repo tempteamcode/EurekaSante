@@ -10,6 +10,8 @@
 #include "GestionFichiers.h"
 #include "GestionMaladies.h"
 
+bool FichierGenererEmpreintesAleatoires(const string& path, uint nbEmpreintes, uint nbAttributs, uint nbMaladies);
+
 bool testFichierChargerAttributs(bool display);
 bool testFichierChargerEmpreintesMaladies(bool display);
 bool testAfficherMaladiesConnues(bool display);

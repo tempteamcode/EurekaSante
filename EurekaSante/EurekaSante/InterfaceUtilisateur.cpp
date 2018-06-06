@@ -98,7 +98,7 @@ void ApplicationHome()
 			}
 			cout << endl;
 			cout << "Que faire ?" << endl;
-			int next;
+			
 			uint id;
 			cin >> id;
 
@@ -188,8 +188,26 @@ void ApplicationTest() {
 	} 
 }
 
+#include <cstdio>
+#include <ctime>
+
 bool test()
 {
+	/*
+	FichierGenererEmpreintesAleatoires("C:\\Temp\\bcpdm.csv", 10000, 100, 10);
+	cout << "Empreintes generees." << endl;
+
+	double duration;
+	std::clock_t start; start = std::clock();
+
+	//testEffectuerAnalyse(false);
+	testEffectuerAnalyses(true);
+	
+	duration = (std::clock() - start) / double(CLOCKS_PER_SEC);
+	cout << "Duree de l'analyse : " << duration << " secondes." << endl;
+	return true;
+	*/
+
 	#ifdef DEV
 		ApplicationTest();
 	#else

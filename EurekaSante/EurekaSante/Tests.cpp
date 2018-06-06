@@ -3,6 +3,7 @@
 using std::cout;
 using std::cerr;
 using std::endl;
+using std::ios;
 
 #include "Tests.h"
 
@@ -11,6 +12,62 @@ extern Attributs attributs;
 vector<Empreinte*> empreintes;
 vector<Empreinte*> empreintesTest;
 vector<Maladie*> maladies;
+
+
+#include <cstdlib>
+#include <ctime>
+#define randBool() bool((std::rand()%2) == 1)
+#define randDouble() ((std::rand()/double(RAND_MAX)) * 300 - 100)
+#define randInt(range) (std::rand() % range)
+#define randString(range) char('A' + randInt(range))
+
+// Critères SCUTU :
+// 10 Millions d'empreintes
+// 100 Caractéristiques
+bool FichierGenererEmpreintesAleatoires(const string& path, uint nbEmpreintes, uint nbAttributs, uint nbMaladies)
+{
+	fstream fichier; fichier.open(path, ios::out | ios::trunc);
+	if (!fichier.is_open()) return false;
+	
+	std::srand(uint(std::time(nullptr)));
+	
+	fstream fichiera; fichiera.open(path + "attr", ios::out | ios::trunc);
+	if (!fichiera.is_open()) return false;
+	
+	fichier << "NoID";
+	
+	fichiera << "AttributeName;AttributeType" << endl;
+	fichiera << "NoID;ID" << endl;
+	vector<int> IsDouble; IsDouble.resize(nbAttributs);
+	for (uint ia = 0; ia < nbAttributs; ia++) {
+		fichiera << 'A' << (ia + 1) << ';' << ((IsDouble[ia] = randBool()) ? "double" : "string") << endl;
+		fichier << ";A" << (ia + 1);
+	}
+	if (nbMaladies > 0) fichier << ";Disease";
+	fichier << endl;
+	
+	fichiera.close();
+	
+	for (uint i = 0; i < nbEmpreintes; i++) {
+		fichier << i;
+		
+		for (uint ia = 0; ia < nbAttributs; ia++) {
+			if (IsDouble[ia])
+				fichier << ';' << randDouble();
+			else
+				fichier << ';' << randString(5);
+		}
+		
+		if (nbMaladies > 0) {
+			fichier << ';';
+			int im = randInt(nbMaladies);
+			if (im > 0) fichier << 'M' << im;
+		}
+		fichier << endl;
+	}
+
+	return true;
+}
 
 bool testFichierChargerAttributs(bool display)
 {
