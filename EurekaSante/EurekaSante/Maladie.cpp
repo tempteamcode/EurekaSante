@@ -24,16 +24,16 @@ void Maladie::Afficher(const Attributs& a) const
 		cout << a.GetName(i) << " :";
 		
 		if (a.IsDouble(i)) {
-			cout << "  Moyenne : " << moyennes[idouble] << " ";
-			cout << "Ecart type : " << ecartTypes[idouble] << endl;
+			cout << "  Moyenne : " << moyennes[idouble];
+			cout << "  Ecart type : " << ecartTypes[idouble] << endl;
 			idouble++;
 		}
 		else {
 			const freqAttr& fmap = frequences[istring];
 			if (fmap.size() > 1) cout << endl;
 			for (freqAttr::const_iterator it = fmap.cbegin(); it != fmap.cend(); ++it) {
-				cout << "  Valeur : \"" << it->first << "\" ";
-				cout << "Frequence : " << it->second << endl;
+				cout << "  Valeur : \"" << it->first << '\"';
+				cout << "  Frequence : " << it->second << endl;
 			}
 			istring++;
 		}
@@ -56,11 +56,10 @@ Maladie::Maladie(const string& nom, const vector<Empreinte*> &empreintes)
 	}
 	
 	frequences.resize(nbAttributsString);
-	const double poids = 1.0 / nbEmpreintes;
 	for (uint ie = 0; ie < nbEmpreintes; ie++) {
 		const Empreinte& e = *empreintes[ie];
 		for (uint istr = 0; istr < nbAttributsString; istr++) {
-			frequences[istr][e.AttributsString()[istr]] += poids;
+			frequences[istr][e.AttributsString()[istr]]++;
 		}
 		for (uint idbl = 0; idbl < nbAttributsDouble; idbl++) {
 			somme[idbl] += (valeurAttribut[idbl][ie] = e.AttributsDouble()[idbl]);
@@ -82,6 +81,20 @@ Maladie::Maladie(const string& nom, const vector<Empreinte*> &empreintes)
 		
 		double ecartType = sqrt(ecartsomme / nbEmpreintes);
 		ecartTypes[i] = ecartType;
+	}
+	
+	for (uint istr = 0; istr < nbAttributsString; istr++) {
+		freqAttr& freqistr = frequences[istr];
+		
+		double fmax = 0.0;
+		for (auto it = freqistr.cbegin(); it != freqistr.cend(); ++it) {
+			if (it->second > fmax) fmax = it->second;
+		}
+		if (fmax > 0.0) {
+			for (auto it = freqistr.begin(); it != freqistr.end(); ++it) {
+				it->second /= fmax;
+			}
+		}
 	}
 	
 	delete somme;

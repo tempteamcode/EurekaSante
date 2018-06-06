@@ -18,7 +18,7 @@ bool Utilisateur::AnalyserFichier(string nomfichier, const Attributs& att)
 
 	Analyse a(empreintes);
 	LigneHistorique lh((*this), a);
-	FichierMAJHist(lh.toString(), false);
+	FichierAjouterHistorique(lh.toString());
 	
 	return true;
 }

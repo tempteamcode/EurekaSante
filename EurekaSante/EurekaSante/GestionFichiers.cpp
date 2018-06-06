@@ -15,8 +15,7 @@ using std::istringstream;
 
 bool FichierChargerAttributs(const string& path, Attributs& attributs)
 {
-	fstream fichier;
-	fichier.open(path, ios::in);
+	fstream fichier; fichier.open(path, ios::in);
 	if (!fichier.is_open()) return false;
 	
 	string data;
@@ -39,11 +38,31 @@ bool FichierChargerAttributs(const string& path, Attributs& attributs)
 	return true;
 }
 
+void FichierDechargerEmpreintes(vector<Empreinte*>& empreintes) {
+	for (auto it = empreintes.begin(); it != empreintes.end(); ++it) {
+		delete (*it);
+	}
+	empreintes.clear();
+}
+
+void FichierDechargerMaladies(vector<Maladie*>& maladies) {
+	for (auto it = maladies.begin(); it != maladies.end(); ++it) {
+		delete (*it);
+	}
+	maladies.clear();
+}
+
+bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, vector<Empreinte*>& empreintes)
+{
+	vector<Maladie*> maladies;
+	bool result = FichierChargerEmpreintes(path, attributs, empreintes, maladies);
+	FichierDechargerMaladies(maladies);
+	return result;
+}
 
 bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, vector<Empreinte*>& empreintes, vector<Maladie*>& maladies)
 {
-	fstream fichier;
-	fichier.open(path, ios::in);
+	fstream fichier; fichier.open(path, ios::in);
 	if (!fichier.is_open()) return false;
 	
 	string data;
@@ -94,17 +113,12 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 		}
 	}
 
-	// NE PAS OUBLIER DE FAIRE LES DELETE !
-
 	return true;
 }
 
 bool FichierSauverEmpreintes(const string& path, const Attributs& attributs, const vector<Empreinte*>& empreintes, bool overwrite)
 {
-	fstream fichier;
-	fichier.open(path, ios::out | (overwrite ? ios::trunc : ios::ate));
-	// ios::trunc efface le contenu précédent
-	// ios::ate ajoute du contenu à la fin
+	fstream fichier; fichier.open(path, ios::out | (overwrite ? ios::trunc : ios::ate));
 	if (!fichier.is_open()) return false;
 	
 	fichier << "NoID";
@@ -139,8 +153,7 @@ bool FichierSauverEmpreintes(const string& path, const Attributs& attributs, con
 
 bool FichierAfficherHistorique()
 {
-	fstream fichier;
-	fichier.open(FILE_HISTORY, ios::in);
+	fstream fichier; fichier.open(FILE_HISTORY, ios::in);
 	if (!fichier.is_open()) return false;
 
 	string line;
@@ -153,11 +166,9 @@ bool FichierAfficherHistorique()
 	return true;
 }
 
-
-
-bool FichierMAJHist(const vector<string>& contenu, bool overwrite) {
-	fstream fichier;
-	fichier.open(FILE_HISTORY, ios::app | (overwrite ? ios::trunc : ios::ate));
+bool FichierAjouterHistorique(const vector<string>& contenu)
+{
+	fstream fichier; fichier.open(FILE_HISTORY, ios::app | ios::ate);
 	if (!fichier.is_open()) return false;
 
 	for (auto it = contenu.cbegin(); it != contenu.cend(); ++it) {

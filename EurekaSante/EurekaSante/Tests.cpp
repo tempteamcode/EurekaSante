@@ -90,7 +90,28 @@ bool testEffectuerAnalyses(bool display)
 	
 	Analyse analyse(empreintesTest);
 	
+	const vector<mapMaladie>& resultats = analyse.Resultats();
+	
+	for (uint ie = 0; ie < empreintes.size(); ie++) {
+		const Maladie * identifie = nullptr;
+		double pourcentage = 0.0;
+
+		const mapMaladie& resultat = resultats[ie];
+		for (auto it = resultat.cbegin(); it != resultat.cend(); ++it) {
+			if (it->second > pourcentage) {
+				identifie = it->first;
+				pourcentage = it->second;
+			}
+		}
+		
+		// [...] 
+		// if std::find(empreintes.)
+	}
+	
+	
 	if (display) {
+
+
 		analyse.Afficher(attributs, empreintesTest);
 	}
 	
