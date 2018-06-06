@@ -160,6 +160,7 @@ void ApplicationTest() {
 		cout << "2. Test : Afficher les maladies connues par la base " << endl;
 		cout << "3. Test : Effectuer une analyse " << endl;
 		cout << "4. Test : Charger des attributs" << endl;
+		cout << "5. Test : Effectuer des analyses" << endl;
 		cout << endl;
 		
 		uint id;
@@ -179,6 +180,9 @@ void ApplicationTest() {
 			break;
 		case 4:
 			testFichierChargerAttributs(true);
+			break;
+		case 5:
+			testEffectuerAnalyses(true);
 			break;
 		}
 		

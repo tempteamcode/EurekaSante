@@ -1,0 +1,13 @@
+L'utilisateur admin a fait les analyses suivantes le 2018-06-06 :
+	Pour l'empreinte 0 de cette analyse, le resultat est ci-dessous : 
+		M1 : 91.875403%
+	Pour l'empreinte 1 de cette analyse, le resultat est ci-dessous : 
+		M2 : 78.711910%
+		Sain : 55.593988%
+	Pour l'empreinte 2 de cette analyse, le resultat est ci-dessous : 
+		M3 : 73.492597%
+		Sain : 70.543559%
+	Pour l'empreinte 3 de cette analyse, le resultat est ci-dessous : 
+		M4 : 68.212822%
+		Sain : 70.671710%
+

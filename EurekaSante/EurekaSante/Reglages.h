@@ -6,7 +6,7 @@
 using std::vector;
 using std::string;
 
-#define DEV
+//#define DEV
 
 typedef unsigned int uint;
 
