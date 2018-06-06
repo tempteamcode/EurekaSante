@@ -6,15 +6,15 @@
 using std::vector;
 using std::string;
 
-//#define DEV
+// #define DEV // A SUPPRIMER DANS LA VERSION CLIENT
 
 typedef unsigned int uint;
 
 const char CSV_SEPARATOR = ';';
 
 const string FILE_HISTORY = "Historique.txt";
-const string FILE_ATTRIBUTS = "C:\\Temp\\bcpdm.csvattr"; // "HealthMeasurementDescription.txt";
-const string FILE_EMPREINTESMALADIES = "C:\\Temp\\bcpdm.csv"; // "HealthMeasurementsWithLabels.txt";
+const string FILE_ATTRIBUTS = "HealthMeasurementDescription.txt"; // "C:\\Temp\\bcpdm.csvattr";
+const string FILE_EMPREINTESMALADIES = "HealthMeasurementsWithLabels.txt";  // "C:\\Temp\\bcpdm.csv";
 
 /*
 #include <string>

@@ -17,5 +17,8 @@ bool testFichierChargerEmpreintesMaladies(bool display);
 bool testAfficherMaladiesConnues(bool display);
 bool testEffectuerAnalyse(bool display);
 bool testEffectuerAnalyses(bool display);
+bool testDuree10mille(bool display);
+
+bool testChronometrer(bool(*fn) (bool), bool display);
 
 #endif // TESTS_H

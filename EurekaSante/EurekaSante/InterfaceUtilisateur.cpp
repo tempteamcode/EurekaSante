@@ -149,16 +149,15 @@ void ApplicationHome()
 		cin >> choix;
 		if (choix == 2) return;
 	}
-
 }
 
 void ApplicationTest() {
 	cout << endl;
 	for (;;) {
 		cout << "0. Quitter" << endl;
-		cout << "1. Test : Charger un fichier d'empreintes maladies " << endl;
-		cout << "2. Test : Afficher les maladies connues par la base " << endl;
-		cout << "3. Test : Effectuer une analyse " << endl;
+		cout << "1. Test : Charger un fichier d'empreintes maladies" << endl;
+		cout << "2. Test : Afficher les maladies connues par la base" << endl;
+		cout << "3. Test : Effectuer une analyse" << endl;
 		cout << "4. Test : Charger des attributs" << endl;
 		cout << "5. Test : Effectuer des analyses" << endl;
 		cout << endl;
@@ -167,23 +166,12 @@ void ApplicationTest() {
 		cin >> id;
 		switch (id)
 		{
-		case 0:
-			return;
-		case 1:
-			testFichierChargerEmpreintesMaladies(true);
-			break;
-		case 2:
-			testAfficherMaladiesConnues(true);
-			break;
-		case 3:
-			testEffectuerAnalyse(true);
-			break;
-		case 4:
-			testFichierChargerAttributs(true);
-			break;
-		case 5:
-			testEffectuerAnalyses(true);
-			break;
+			case 0: return;
+			case 1: testChronometrer(testFichierChargerEmpreintesMaladies, true); break;
+			case 2: testChronometrer(testAfficherMaladiesConnues,          true); break;
+			case 3: testChronometrer(testEffectuerAnalyse,                 true); break;
+			case 4: testChronometrer(testFichierChargerAttributs,          true); break;
+			case 5: testChronometrer(testEffectuerAnalyses,                true); break;
 		}
 		
 		cout << endl;
@@ -192,32 +180,14 @@ void ApplicationTest() {
 	} 
 }
 
-#include <cstdio>
-#include <ctime>
-
 bool test()
 {
-	/*
-	FichierGenererEmpreintesAleatoires("C:\\Temp\\bcpdm.csv", 10000, 100, 10);
-	cout << "Empreintes generees." << endl;
-
-	double duration;
-	std::clock_t start; start = std::clock();
-
-	//testEffectuerAnalyse(false);
-	testEffectuerAnalyses(true);
-	
-	duration = (std::clock() - start) / double(CLOCKS_PER_SEC);
-	cout << "Duree de l'analyse : " << duration << " secondes." << endl;
-	return true;
-	*/
-
-	#ifdef DEV
-		ApplicationTest();
-	#else
-		if (!InitialiserApplication()) return false;
-		ApplicationHome();
-	#endif
+#ifdef DEV
+	ApplicationTest();
+#else
+	if (!InitialiserApplication()) return false;
+	ApplicationHome();
+#endif
 	
 	return true;
 }

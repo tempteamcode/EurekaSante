@@ -1,4 +1,8 @@
 
+#include <cstdlib>
+#include <cstdio>
+#include <ctime>
+
 #include <iostream>
 using std::cout;
 using std::cerr;
@@ -14,16 +18,11 @@ vector<Empreinte*> empreintesTest;
 vector<Maladie*> maladies;
 
 
-#include <cstdlib>
-#include <ctime>
 #define randBool() bool((std::rand()%2) == 1)
 #define randDouble() ((std::rand()/double(RAND_MAX)) * 300 - 100)
 #define randInt(range) (std::rand() % range)
 #define randString(range) char('A' + randInt(range))
 
-// Critères SCUTU :
-// 10 Millions d'empreintes
-// 100 Caractéristiques
 bool FichierGenererEmpreintesAleatoires(const string& path, uint nbEmpreintes, uint nbAttributs, uint nbMaladies)
 {
 	fstream fichier; fichier.open(path, ios::out | ios::trunc);
@@ -31,7 +30,7 @@ bool FichierGenererEmpreintesAleatoires(const string& path, uint nbEmpreintes, u
 	
 	std::srand(uint(std::time(nullptr)));
 	
-	fstream fichiera; fichiera.open(path + "attr", ios::out | ios::trunc);
+	fstream fichiera; fichiera.open(path + "_attr", ios::out | ios::trunc);
 	if (!fichiera.is_open()) return false;
 	
 	fichier << "NoID";
@@ -138,7 +137,7 @@ bool testEffectuerAnalyse(bool display)
 bool testEffectuerAnalyses(bool display)
 {
 	if (!testAfficherMaladiesConnues(false)) return false;
-
+	
 	if (!FichierChargerEmpreintes(FILE_EMPREINTESMALADIES, attributs, empreintesTest)) {
 		cerr << "Erreur lors du chargement des empreintes !" << endl;
 		return false;
@@ -153,7 +152,7 @@ bool testEffectuerAnalyses(bool display)
 	for (uint ie = 0; ie < empreintes.size(); ie++) {
 		const Maladie * identifie = nullptr;
 		double pourcentage = 0.0;
-
+		
 		const mapMaladie& resultat = resultats[ie];
 		for (auto it = resultat.cbegin(); it != resultat.cend(); ++it) {
 			if (it->second > pourcentage) {
@@ -172,4 +171,41 @@ bool testEffectuerAnalyses(bool display)
 	}
 	
 	return true;
+}
+
+bool testDuree10mille(bool display)
+{
+	return false;
+	
+	/*
+	FichierGenererEmpreintesAleatoires("bcpdm.csv", 10000, 100, 10);
+	cout << "Empreintes generees dans 'bcpdm.csv'." << endl;
+	
+	double duration;
+	std::clock_t start; start = std::clock();
+	if (!testEffectuerAnalyses(false)) return false;
+	duration = (std::clock() - start) / double(CLOCKS_PER_SEC);
+	
+	if (display) {
+		cout << "Duree de l'analyse : " << duration << " secondes." << endl;
+	}
+	
+	return true;
+	*/
+}
+
+bool testChronometrer(bool (*fn) (bool), bool display)
+{
+	bool reussite;
+	
+	double duration;
+	std::clock_t start; start = std::clock();
+	reussite = fn(display);
+	duration = (std::clock() - start) / double(CLOCKS_PER_SEC);
+	
+	if (reussite && display) {
+		cout << "Duree du test : " << duration << " secondes." << endl;
+	}
+	
+	return reussite;
 }
