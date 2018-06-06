@@ -78,11 +78,10 @@ bool testEffectuerAnalyse(bool display)
 	return true;
 }
 
-/*
 bool testEffectuerAnalyses(bool display)
 {
 	if (!testAfficherMaladiesConnues(false)) return false;
-	
+
 	if (!FichierChargerEmpreintes(FILE_EMPREINTESMALADIES, attributs, empreintesTest)) {
 		cerr << "Erreur lors du chargement des empreintes !" << endl;
 		return false;
@@ -91,6 +90,8 @@ bool testEffectuerAnalyses(bool display)
 	Analyse analyse(empreintesTest);
 	
 	const vector<mapMaladie>& resultats = analyse.Resultats();
+	
+	int comptejuste = 0;
 	
 	for (uint ie = 0; ie < empreintes.size(); ie++) {
 		const Maladie * identifie = nullptr;
@@ -104,17 +105,14 @@ bool testEffectuerAnalyses(bool display)
 			}
 		}
 		
-		// [...] 
-		// if std::find(empreintes.)
+		const vector<const Maladie *> maladies = empreintes[ie]->Maladies();
+		if (std::find(maladies.cbegin(), maladies.cend(), identifie) != maladies.cend())
+			comptejuste++;
 	}
 	
-	
 	if (display) {
-
-
-		analyse.Afficher(attributs, empreintesTest);
+		cout << "Identifications correctes : " << comptejuste << "/" << empreintes.size() << ", soit un taux de reussite de " << comptejuste*100/double(empreintes.size()) << '%' << endl;
 	}
 	
 	return true;
 }
-*/
