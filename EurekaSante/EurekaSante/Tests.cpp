@@ -180,11 +180,6 @@ void testEffectuerStatistiques_(bool display)
 
 bool testDuree10mille(bool display)
 {
-	Attributs attributs;
-	vector<Empreinte*> empreintes;
-	vector<Empreinte*> empreintesTest;
-	vector<Maladie*> maladies;
-	
 	if (FichierGenererEmpreintesAleatoires("bcpdm.csv", 10000, 100, 10)) {
 		cout << "Empreintes generees dans 'bcpdm.csv'." << endl;
 	} else {
@@ -194,7 +189,7 @@ bool testDuree10mille(bool display)
 	
 	if (FichierChargerAttributs("bcpdm.csv_attr", attributs) &&
 		FichierChargerEmpreintes("bcpdm.csv", attributs, empreintes, maladies)) {
-		cout << "Attributs+empreintes.maladies lues." << endl;
+		cout << "Attributs+empreintes+maladies lues." << endl;
 	} else {
 		cerr << "Erreur lors du chargement des attributs+empreintes+maladies !" << endl;
 		return false;

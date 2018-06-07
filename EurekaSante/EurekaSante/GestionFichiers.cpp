@@ -22,6 +22,7 @@ bool FichierChargerAttributs(const string& path, Attributs& attributs)
 	getline(fichier, data); // AttributeName;AttributeType
 	getline(fichier, data); // NoID;ID
 	
+	attributs.Effacer();
 	for (;;) {
 		getline(fichier, data);
 		if (fichier.fail()) break;
@@ -62,6 +63,9 @@ bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, ve
 
 bool FichierChargerEmpreintes(const string& path, const Attributs& attributs, vector<Empreinte*>& empreintes, vector<Maladie*>& maladies)
 {
+	FichierDechargerEmpreintes(empreintes);
+	FichierDechargerMaladies(maladies);
+	
 	fstream fichier; fichier.open(path, ios::in);
 	if (!fichier.is_open()) return false;
 	

@@ -19,3 +19,10 @@ void Attributs::Afficher() const
 		cout << '#' << index << " : " << '(' << types[index] << ") " << noms[index] << endl;
 	}
 }
+
+void Attributs::Effacer()
+{
+	noms.clear();
+	types.clear();
+	indices.clear();
+}

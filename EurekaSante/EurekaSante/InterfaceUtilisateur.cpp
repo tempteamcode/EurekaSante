@@ -106,6 +106,7 @@ void ApplicationHome()
 			
 			uint id;
 			cin_safe(id);
+			cout << endl;
 			switch (id)
 			{
 			case 0:
@@ -167,6 +168,7 @@ void ApplicationTest() {
 		
 		uint id;
 		cin_safe(id);
+		cout << endl;
 		switch (id)
 		{
 			case 0: return;
@@ -205,7 +207,6 @@ int main()
 	
 	cout << endl;
 	bool success = run();
-	cout << endl;
 	
 	if (!success) cout << "Echec de l'execution." << endl;
 	

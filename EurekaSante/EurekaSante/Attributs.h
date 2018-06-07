@@ -11,6 +11,7 @@ public:
 	void Afficher() const;
 	const string& GetName(uint index) const;
 	bool IsDouble(uint index) const;
+	void Effacer();
 	
 private:
 	vector<string> noms;
