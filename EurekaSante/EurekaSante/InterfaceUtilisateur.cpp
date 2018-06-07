@@ -51,12 +51,16 @@ bool InitialiserApplication()
 	return true;
 }
 
-bool Connexion()
+void MenuAfficherMaladie()
+{
+	// [...]
+}
+
+bool MenuConnexion()
 {
 	string nom;
 	string mdp;
-	int choix;
-	while (true) {
+	for (;;) {
 		cout << "Connexion" << endl;
 		cout << "Nom d'utilisateur : " << flush; cin_safe(nom);
 		cout << "Mot de passe : " << flush; cin_safe(mdp);
@@ -71,6 +75,8 @@ bool Connexion()
 				}
 			}
 		}
+		
+		int choix;
 		cout << endl;
 		cout << "Mauvaise combinaison identifiant/mot de passe." << endl;
 		cout << "Voulez-vous tentez de vous reconnecter ?" << endl;
@@ -83,9 +89,8 @@ bool Connexion()
 }
 void ApplicationHome()
 {
-	cout << endl;
 	for (;;) {
-		if (!Connexion()) return;
+		if (!MenuConnexion()) return;
 		while (utilisateurcourant != nullptr) {
 			bool admin = utilisateurcourant->Nom() == "admin";
 			
@@ -97,11 +102,10 @@ void ApplicationHome()
 			cout << endl;
 			cout << "Que faire ?" << endl;
 			
-			uint id;
-			cin_safe(id);
-			
 			string nomfichier;
 			
+			uint id;
+			cin_safe(id);
 			switch (id)
 			{
 			case 0:
@@ -130,7 +134,6 @@ void ApplicationHome()
 				
 				InitialiserMaladiesConnues(nomfichier);
 				break;
-
 			}
 			if (id != 0) {
 				cout << endl;
@@ -151,14 +154,14 @@ void ApplicationHome()
 }
 
 void ApplicationTest() {
-	cout << endl;
 	for (;;) {
 		cout << "0. Quitter" << endl;
 		cout << "1. Test : Charger un fichier d'empreintes maladies" << endl;
 		cout << "2. Test : Afficher les maladies connues par la base" << endl;
 		cout << "3. Test : Effectuer une analyse" << endl;
 		cout << "4. Test : Charger des attributs" << endl;
-		cout << "5. Test : Effectuer des analyses" << endl;
+		cout << "5. Test : Effectuer des statistiques d'analyses" << endl;
+		cout << "6. Test : Performances sur 10 000 empreintes de 100 attributs" << endl;
 		cout << endl;
 		cout << "Que faire ?" << endl;
 		
@@ -171,7 +174,8 @@ void ApplicationTest() {
 			case 2: testChronometrer(testAfficherMaladiesConnues,          true); break;
 			case 3: testChronometrer(testEffectuerAnalyse,                 true); break;
 			case 4: testChronometrer(testFichierChargerAttributs,          true); break;
-			case 5: testChronometrer(testEffectuerAnalyses,                true); break;
+			case 5: testChronometrer(testEffectuerStatistiques,            true); break;
+			case 6: testChronometrer(testDuree10mille,                     true); break;
 		}
 		
 		cout << endl;

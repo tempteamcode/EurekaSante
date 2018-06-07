@@ -12,12 +12,19 @@
 
 bool FichierGenererEmpreintesAleatoires(const string& path, uint nbEmpreintes, uint nbAttributs, uint nbMaladies);
 
-bool testFichierChargerAttributs(bool display);
-bool testFichierChargerEmpreintesMaladies(bool display);
+
+bool testFichierChargerAttributs(bool display, const string& path);
+bool testFichierChargerEmpreintesMaladies(bool display, const string& path);
+bool testEffectuerStatistiques(bool display, const string& path);
+
+inline bool testFichierChargerAttributs(bool display) { return testFichierChargerAttributs(display, FILE_ATTRIBUTS); }
+inline bool testFichierChargerEmpreintesMaladies(bool display) { return testFichierChargerEmpreintesMaladies(display, FILE_EMPREINTESMALADIES); }
+inline bool testEffectuerStatistiques(bool display) { return testEffectuerStatistiques(display, FILE_EMPREINTESMALADIES); }
+
 bool testAfficherMaladiesConnues(bool display);
 bool testEffectuerAnalyse(bool display);
-bool testEffectuerAnalyses(bool display);
 bool testDuree10mille(bool display);
+
 
 bool testChronometrer(bool(*fn) (bool), bool display);
 

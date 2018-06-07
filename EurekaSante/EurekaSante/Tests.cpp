@@ -68,7 +68,7 @@ bool FichierGenererEmpreintesAleatoires(const string& path, uint nbEmpreintes, u
 	return true;
 }
 
-bool testFichierChargerAttributs(bool display)
+bool testFichierChargerAttributs(bool display, const string& path)
 {
 	if (!FichierChargerAttributs(FILE_ATTRIBUTS, attributs)) {
 		cerr << "Erreur lors du chargement des attributs !" << endl;
@@ -82,11 +82,11 @@ bool testFichierChargerAttributs(bool display)
 	return true;
 }
 
-bool testFichierChargerEmpreintesMaladies(bool display)
+bool testFichierChargerEmpreintesMaladies(bool display, const string& path)
 {
 	if (!testFichierChargerAttributs(false)) return false;
 	
-	if (!FichierChargerEmpreintes(FILE_EMPREINTESMALADIES, attributs, empreintes, maladies)) {
+	if (!FichierChargerEmpreintes(path, attributs, empreintes, maladies)) {
 		cerr << "Erreur lors du chargement des empreintes+maladies !" << endl;
 		return false;
 	}
@@ -134,25 +134,32 @@ bool testEffectuerAnalyse(bool display)
 	return true;
 }
 
-bool testEffectuerAnalyses(bool display)
+void testEffectuerStatistiques_(bool display);
+bool testEffectuerStatistiques(bool display, const string& path)
 {
 	if (!testAfficherMaladiesConnues(false)) return false;
 	
-	if (!FichierChargerEmpreintes(FILE_EMPREINTESMALADIES, attributs, empreintesTest)) {
+	if (!FichierChargerEmpreintes(path, attributs, empreintesTest)) {
 		cerr << "Erreur lors du chargement des empreintes !" << endl;
 		return false;
 	}
 	
+	testEffectuerStatistiques_(display);
+	
+	return true;
+}
+void testEffectuerStatistiques_(bool display)
+{
 	Analyse analyse(empreintesTest);
-	
+
 	const vector<mapMaladie>& resultats = analyse.Resultats();
-	
+
 	int comptejuste = 0;
-	
+
 	for (uint ie = 0; ie < empreintes.size(); ie++) {
 		const Maladie * identifie = nullptr;
 		double pourcentage = 0.0;
-		
+
 		const mapMaladie& resultat = resultats[ie];
 		for (auto it = resultat.cbegin(); it != resultat.cend(); ++it) {
 			if (it->second > pourcentage) {
@@ -160,17 +167,15 @@ bool testEffectuerAnalyses(bool display)
 				pourcentage = it->second;
 			}
 		}
-		
+
 		const vector<const Maladie *> maladies = empreintes[ie]->Maladies();
 		if (std::find(maladies.cbegin(), maladies.cend(), identifie) != maladies.cend())
 			comptejuste++;
 	}
-	
+
 	if (display) {
-		cout << "Identifications correctes : " << comptejuste << "/" << empreintes.size() << ", soit un taux de reussite de " << comptejuste*100/double(empreintes.size()) << '%' << endl;
+		cout << "Identifications correctes : " << comptejuste << "/" << empreintes.size() << ", soit un taux de reussite de " << comptejuste * 100 / double(empreintes.size()) << '%' << endl;
 	}
-	
-	return true;
 }
 
 bool testDuree10mille(bool display)
@@ -180,13 +185,28 @@ bool testDuree10mille(bool display)
 	vector<Empreinte*> empreintesTest;
 	vector<Maladie*> maladies;
 	
-	/*
-	FichierGenererEmpreintesAleatoires("bcpdm.csv", 10000, 100, 10);
-	cout << "Empreintes generees dans 'bcpdm.csv'." << endl;
+	if (FichierGenererEmpreintesAleatoires("bcpdm.csv", 10000, 100, 10)) {
+		cout << "Empreintes generees dans 'bcpdm.csv'." << endl;
+	} else {
+		cerr << "Erreur d'ecriture d'empreintes dans 'bcpdm.csv'." << endl;
+		return false;
+	}
+	
+	if (FichierChargerAttributs("bcpdm.csv_attr", attributs) &&
+		FichierChargerEmpreintes("bcpdm.csv", attributs, empreintes, maladies)) {
+		cout << "Attributs+empreintes.maladies lues." << endl;
+	} else {
+		cerr << "Erreur lors du chargement des attributs+empreintes+maladies !" << endl;
+		return false;
+	}
+	
+	empreintesTest = empreintes;
+	MaladiesConnues(maladies);
+	
 	
 	double duration;
 	std::clock_t start; start = std::clock();
-	if (!testEffectuerAnalyses(false)) return false;
+	testEffectuerStatistiques_(display);
 	duration = (std::clock() - start) / double(CLOCKS_PER_SEC);
 	
 	if (display) {
@@ -194,10 +214,8 @@ bool testDuree10mille(bool display)
 	}
 	
 	return true;
-	*/
-	
-	return false;
 }
+
 
 bool testChronometrer(bool (*fn) (bool), bool display)
 {
