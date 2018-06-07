@@ -1,6 +1,7 @@
 #ifndef REGLAGES_H
 #define REGLAGES_H
 
+
 #include <vector>
 #include <string>
 using std::vector;

@@ -1,3 +1,4 @@
+#include <iomanip>
 #include <iostream>
 using std::cin;
 using std::cout;
@@ -5,12 +6,13 @@ using std::cerr;
 using std::flush;
 using std::endl;
 
+#define cin_safe(var) cin >> var; if (cin.fail()) {cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
+
 #include "InterfaceUtilisateur.h"
 #include "Attributs.h"
 #include "GestionFichiers.h"
 #include "Utilisateur.h"
 #include "Tests.h"
-
 
 Attributs attributs;
 
@@ -56,8 +58,8 @@ bool Connexion()
 	int choix;
 	while (true) {
 		cout << "Connexion" << endl;
-		cout << "Nom d'utilisateur : " << flush; cin >> nom;
-		cout << "Mot de passe : " << flush; cin >> mdp;
+		cout << "Nom d'utilisateur : " << flush; cin_safe(nom);
+		cout << "Mot de passe : " << flush; cin_safe(mdp);
 		cout << endl;
 
 		utilisateurcourant = nullptr;
@@ -70,13 +72,13 @@ bool Connexion()
 			}
 		}
 		cout << endl;
-		cout << "Mauvaise combinaison identifiant/mdp" << endl;
+		cout << "Mauvaise combinaison identifiant/mot de passe." << endl;
 		cout << "Voulez-vous tentez de vous reconnecter ?" << endl;
+		cout << "0. Non" << endl;
 		cout << "1. Oui" << endl;
-		cout << "2. Non" << endl;
 		cout << endl;
-		cin >> choix;
-		if (choix == 2) return false;
+		cin_safe(choix);
+		if (choix == 0) return false;
 	}
 }
 void ApplicationHome()
@@ -85,25 +87,21 @@ void ApplicationHome()
 	for (;;) {
 		if (!Connexion()) return;
 		while (utilisateurcourant != nullptr) {
-
+			bool admin = utilisateurcourant->Nom() == "admin";
+			
 			cout << "0. Deconnexion" << endl;
 			cout << "1. Afficher Historique" << endl;
 			cout << "2. Afficher Maladies" << endl;
 			cout << "3. Analyser des empreintes" << endl;
-
-			bool admin = utilisateurcourant->Nom() == "admin";
-
-			if (admin) {
-				cout << "4. Modifier la base des maladies" << endl;
-			}
+ if (admin) cout << "4. Modifier la base des maladies" << endl;
 			cout << endl;
 			cout << "Que faire ?" << endl;
 			
 			uint id;
-			cin >> id;
-
+			cin_safe(id);
+			
 			string nomfichier;
-
+			
 			switch (id)
 			{
 			case 0:
@@ -118,20 +116,21 @@ void ApplicationHome()
 			case 2:
 				AfficherMaladiesConnues(attributs);
 				break;
-
+				
 			case 3:
 				cout << "Nom du fichier a analyser : " << flush;
-				cin >> nomfichier;
-
+				cin_safe(nomfichier);
+				
 				utilisateurcourant->AnalyserFichier(nomfichier, attributs);
 				break;
-
+				
 			case 4: if (!admin) break;
 				cout << "Nom du fichier a charger : " << flush;
-				cin >> nomfichier;
-
+				cin_safe(nomfichier);
+				
 				InitialiserMaladiesConnues(nomfichier);
 				break;
+
 			}
 			if (id != 0) {
 				cout << endl;
@@ -143,11 +142,11 @@ void ApplicationHome()
 		int choix;
 		cout << endl;
 		cout << "Voulez-vous vous reconnecter ?" << endl;
+		cout << "0. Non" << endl;
 		cout << "1. Oui" << endl;
-		cout << "2. Non" << endl;
 		cout << endl;
-		cin >> choix;
-		if (choix == 2) return;
+		cin_safe(choix);
+		if (choix == 0) return;
 	}
 }
 
@@ -161,9 +160,10 @@ void ApplicationTest() {
 		cout << "4. Test : Charger des attributs" << endl;
 		cout << "5. Test : Effectuer des analyses" << endl;
 		cout << endl;
+		cout << "Que faire ?" << endl;
 		
 		uint id;
-		cin >> id;
+		cin_safe(id);
 		switch (id)
 		{
 			case 0: return;
@@ -180,34 +180,30 @@ void ApplicationTest() {
 	} 
 }
 
-bool test()
-{
 #ifdef DEV
-	ApplicationTest();
+#define INIT_MSG "Demarrage de EurekaSante en mode developpeur."
+#define INIT_APP ApplicationTest
 #else
-	if (!InitialiserApplication()) return false;
-	ApplicationHome();
+#define INIT_MSG "Demarrage de EurekaSante."
+#define INIT_APP if (!InitialiserApplication()) return false; ApplicationHome
 #endif
-	
+
+bool run()
+{
+	INIT_APP();
 	return true;
 }
 
-#ifdef DEV
-#define MSG_Welcome "Demarrage de EurekaSante en mode developpeur."
-#else
-#define MSG_Welcome "Demarrage de EurekaSante."
-#endif
-
 int main()
 {
-	cout << MSG_Welcome << endl;
+	cout << INIT_MSG << endl;
 	
 	
 	cout << endl;
-	bool success = test();
+	bool success = run();
 	cout << endl;
 	
-	if (!success) cout << "Echec du test." << endl;
+	if (!success) cout << "Echec de l'execution." << endl;
 	
 	
 	cout << "Fermeture de EurekaSante." << endl;

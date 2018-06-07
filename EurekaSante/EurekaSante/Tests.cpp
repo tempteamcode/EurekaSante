@@ -175,7 +175,10 @@ bool testEffectuerAnalyses(bool display)
 
 bool testDuree10mille(bool display)
 {
-	return false;
+	Attributs attributs;
+	vector<Empreinte*> empreintes;
+	vector<Empreinte*> empreintesTest;
+	vector<Maladie*> maladies;
 	
 	/*
 	FichierGenererEmpreintesAleatoires("bcpdm.csv", 10000, 100, 10);
@@ -192,6 +195,8 @@ bool testDuree10mille(bool display)
 	
 	return true;
 	*/
+	
+	return false;
 }
 
 bool testChronometrer(bool (*fn) (bool), bool display)
