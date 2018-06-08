@@ -8,6 +8,7 @@ using std::cout;
 using std::cerr;
 using std::endl;
 using std::ios;
+using std::cin;
 
 #include "Tests.h"
 
@@ -178,9 +179,19 @@ void testEffectuerStatistiques_(bool display)
 	}
 }
 
-bool testDuree10mille(bool display)
+bool testDuree(bool display)
 {
-	if (FichierGenererEmpreintesAleatoires("bcpdm.csv", 10000, 100, 10)) {
+	string nbEmpreintesStr;
+	cout << "Nombre d'empreintes : ";
+	cin >> nbEmpreintesStr;
+	string nbAttrStr;
+	cout << "Attributs : ";
+	cin >> nbAttrStr;
+	string nbMaladiesStr;
+	cout << "Maladies : ";
+	cin >> nbMaladiesStr;
+	cout << endl;
+	if (FichierGenererEmpreintesAleatoires("bcpdm.csv", stoi(nbEmpreintesStr), stoi(nbAttrStr), stoi(nbMaladiesStr))){
 		cout << "Empreintes generees dans 'bcpdm.csv'." << endl;
 	} else {
 		cerr << "Erreur d'ecriture d'empreintes dans 'bcpdm.csv'." << endl;

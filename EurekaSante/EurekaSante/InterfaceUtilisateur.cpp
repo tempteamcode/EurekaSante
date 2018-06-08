@@ -162,7 +162,7 @@ void ApplicationTest() {
 		cout << "3. Test : Effectuer une analyse" << endl;
 		cout << "4. Test : Charger des attributs" << endl;
 		cout << "5. Test : Effectuer des statistiques d'analyses" << endl;
-		cout << "6. Test : Performances sur 10 000 empreintes de 100 attributs" << endl;
+		cout << "6. Test : Performances" << endl;
 		cout << endl;
 		cout << "Que faire ?" << endl;
 		
@@ -177,7 +177,7 @@ void ApplicationTest() {
 			case 3: testChronometrer(testEffectuerAnalyse,                 true); break;
 			case 4: testChronometrer(testFichierChargerAttributs,          true); break;
 			case 5: testChronometrer(testEffectuerStatistiques,            true); break;
-			case 6: testChronometrer(testDuree10mille,                     true); break;
+			case 6: testChronometrer(testDuree,                            true); break;
 		}
 		
 		cout << endl;

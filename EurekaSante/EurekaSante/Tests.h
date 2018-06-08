@@ -23,7 +23,7 @@ inline bool testEffectuerStatistiques(bool display) { return testEffectuerStatis
 
 bool testAfficherMaladiesConnues(bool display);
 bool testEffectuerAnalyse(bool display);
-bool testDuree10mille(bool display);
+bool testDuree(bool display);
 
 
 bool testChronometrer(bool(*fn) (bool), bool display);
