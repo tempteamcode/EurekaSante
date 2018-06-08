@@ -44,10 +44,12 @@ bool InitialiserApplication()
 	if (!InitialiserMaladiesConnues(FILE_EMPREINTESMALADIES)) return false;
 	
 	Utilisateur admin("admin", "admin");
-	Utilisateur mickael("mickael", "gadoud");
+	Utilisateur vms("vasile-marian", "scuturici");
+	Utilisateur sd("stefan", "duffner");
 	utilisateurs.push_back(admin);
-	utilisateurs.push_back(mickael);
-
+	utilisateurs.push_back(vms);
+	utilisateurs.push_back(sd);
+	
 	return true;
 }
 
