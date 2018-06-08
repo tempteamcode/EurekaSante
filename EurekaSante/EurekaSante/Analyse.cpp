@@ -90,7 +90,12 @@ void EffectuerAnalyse(mapMaladie& resultat, const Empreinte& empreinte)
 		// if (possible) {
 			for (uint istring = 0; istring < nbString; istring++)
 			{
-				double freq = m.Frequences()[istring].at(attributsString[istring]);
+				double freq = 0.0;
+				
+				const auto& map = m.Frequences()[istring];
+				auto pos = map.find(attributsString[istring]);
+				if (pos != map.cend()) freq = m.Frequences()[istring].at(attributsString[istring]);
+				
 				sommeproximites += freq;
 			}
 			

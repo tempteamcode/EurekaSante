@@ -9,6 +9,11 @@ using std::cerr;
 using std::endl;
 using std::ios;
 using std::cin;
+using std::flush;
+
+#include <iomanip>
+using namespace std;
+#define cin_safe_def(var, def) cin >> var; if(cin.fail()) {cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); var = def;}
 
 #include "Tests.h"
 
@@ -181,23 +186,27 @@ void testEffectuerStatistiques_(bool display)
 
 bool testDuree(bool display)
 {
-	string nbEmpreintesStr;
-	cout << "Nombre d'empreintes : ";
-	cin >> nbEmpreintesStr;
-	string nbAttrStr;
-	cout << "Attributs : ";
-	cin >> nbAttrStr;
-	string nbMaladiesStr;
-	cout << "Maladies : ";
-	cin >> nbMaladiesStr;
-	cout << endl;
-	if (FichierGenererEmpreintesAleatoires("bcpdm.csv", stoi(nbEmpreintesStr), stoi(nbAttrStr), stoi(nbMaladiesStr))){
+	uint nbEmpreintes;
+	cout << "Nombre d'empreintes : " << flush;
+	cin_safe_def(nbEmpreintes, 10000);
+	
+	uint nbAttributs;
+	cout << "Nombre d'attributs : " << flush;
+	cin_safe_def(nbAttributs, 100);
+	
+	uint nbMaladies;
+	cout << "Nombre de maladies : " << flush;
+	cin_safe_def(nbMaladies, 10);
+	
+	cout << "Debut de la generation de " << nbEmpreintes << " empreintes avec " << nbAttributs << " attributs et " << nbMaladies << " maladies." << endl;
+	if (FichierGenererEmpreintesAleatoires("bcpdm.csv", nbEmpreintes, nbAttributs, nbMaladies)) {
 		cout << "Empreintes generees dans 'bcpdm.csv'." << endl;
 	} else {
 		cerr << "Erreur d'ecriture d'empreintes dans 'bcpdm.csv'." << endl;
 		return false;
 	}
 	
+	cout << "Debut de la recuperation des donnees generees." << endl;
 	if (FichierChargerAttributs("bcpdm.csv_attr", attributs) &&
 		FichierChargerEmpreintes("bcpdm.csv", attributs, empreintes, maladies)) {
 		cout << "Attributs+empreintes+maladies lues." << endl;

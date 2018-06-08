@@ -1,4 +1,3 @@
-#include <iomanip>
 #include <iostream>
 using std::cin;
 using std::cout;
@@ -6,6 +5,7 @@ using std::cerr;
 using std::flush;
 using std::endl;
 
+#include <iomanip>
 #define cin_safe(var) cin >> var; if (cin.fail()) {cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
 
 #include "InterfaceUtilisateur.h"
