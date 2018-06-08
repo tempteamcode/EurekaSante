@@ -7,7 +7,7 @@
 using std::vector;
 using std::string;
 
-#define DEV // A SUPPRIMER DANS LA VERSION CLIENT
+// #define DEV // A SUPPRIMER DANS LA VERSION CLIENT
 
 typedef unsigned int uint;
 
