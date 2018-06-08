@@ -20,11 +20,11 @@ LigneHistorique::LigneHistorique(const Utilisateur& utilisateur, const Analyse& 
 
 vector<string> LigneHistorique::toString() {
 	vector<string> contenu;
-
+	
 	contenu.push_back("L'utilisateur " + utilisateur.Nom() + " a fait les analyses suivantes le " + date + " :");
 	const vector<mapMaladie>& maps = analyse.Resultats();
 	for (uint i = 0; i < maps.size(); i++) {
-		contenu.push_back("\tPour l'empreinte " + to_string(i) + " de cette analyse, le resultat est ci-dessous : ");
+		contenu.push_back("\tEmpreinte " + to_string(i) + " : ");
 		if (maps[i].size() == 0) contenu.push_back("\t\tAucun profil correspondant"); else
 		for (auto it = maps[i].cbegin(); it != maps[i].cend(); ++it) {
 			if (it->first->Nom() != "") {
@@ -36,6 +36,6 @@ vector<string> LigneHistorique::toString() {
 		}
 	}
 	contenu.push_back("");
-
+	
 	return contenu;
 }
