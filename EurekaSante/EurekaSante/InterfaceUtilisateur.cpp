@@ -53,7 +53,25 @@ bool InitialiserApplication()
 
 void MenuAfficherMaladie()
 {
-	// [...]
+	extern vector<const Maladie*> maladiesConnues;
+	
+	uint i = 0;
+	cout << "Maladies :" << endl;
+	for (auto it = maladiesConnues.cbegin(); it != maladiesConnues.cend(); ++it, i++) {
+		string nom = (*it)->Nom();
+		if (nom == "") nom = "Profil sain";
+		cout << (i+1) << ". " << nom << endl;
+	}
+	cout << endl;
+	
+	uint choix;
+	cout << "Choix : " << flush;
+	cin_safe(choix);
+	
+	if ((choix > 0) && (choix <= maladiesConnues.size())) {
+		(maladiesConnues[choix-1])->Afficher(attributs);
+	}
+	cout << endl;
 }
 
 bool MenuConnexion()
@@ -97,8 +115,9 @@ void ApplicationHome()
 			cout << "0. Deconnexion" << endl;
 			cout << "1. Afficher Historique" << endl;
 			cout << "2. Afficher Maladies" << endl;
-			cout << "3. Analyser des empreintes" << endl;
- if (admin) cout << "4. Modifier la base des maladies" << endl;
+			cout << "3. Afficher une maladie" << endl;
+			cout << "4. Analyser des empreintes" << endl;
+ if (admin) cout << "5. Modifier la base des maladies" << endl;
 			cout << endl;
 			cout << "Que faire ?" << endl;
 			
@@ -123,13 +142,17 @@ void ApplicationHome()
 				break;
 				
 			case 3:
+				MenuAfficherMaladie();
+				break;
+				
+			case 4:
 				cout << "Nom du fichier a analyser : " << flush;
 				cin_safe(nomfichier);
 				
 				utilisateurcourant->AnalyserFichier(nomfichier, attributs);
 				break;
 				
-			case 4: if (!admin) break;
+			case 5: if (!admin) break;
 				cout << "Nom du fichier a charger : " << flush;
 				cin_safe(nomfichier);
 				
