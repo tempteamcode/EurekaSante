@@ -1,5 +1,9 @@
 #include "Utilisateur.h"
 
+#include <iostream>
+using std::cerr;
+using std::endl;
+
 Utilisateur::Utilisateur(const string& nom, const string& mdp)
 : nom(nom), mdp(mdp), connecte(false)
 {

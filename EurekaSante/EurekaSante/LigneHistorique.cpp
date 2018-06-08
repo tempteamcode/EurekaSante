@@ -1,8 +1,10 @@
 
 #include <ctime>
+#include <iostream>
 
 #include "LigneHistorique.h"
 #include "Utilisateur.h"
+using std::to_string;
 
 LigneHistorique::LigneHistorique(const Utilisateur& utilisateur, const Analyse& analyse)
 : utilisateur(utilisateur), analyse(analyse)

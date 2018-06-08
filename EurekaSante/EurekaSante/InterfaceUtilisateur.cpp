@@ -6,7 +6,7 @@ using std::flush;
 using std::endl;
 
 #include <iomanip>
-#define cin_safe(var) cin >> var; if (cin.fail()) {cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');}
+#define cin_safe(var) cin >> var; if (cin.fail()) {cin.clear(); cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');}
 
 #include "InterfaceUtilisateur.h"
 #include "Attributs.h"

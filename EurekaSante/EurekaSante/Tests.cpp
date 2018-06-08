@@ -12,8 +12,7 @@ using std::cin;
 using std::flush;
 
 #include <iomanip>
-using namespace std;
-#define cin_safe_def(var, def) cin >> var; if(cin.fail()) {cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); var = def;}
+#define cin_safe_def(var, def) cin >> var; if(cin.fail()) {cin.clear(); cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); var = def;}
 
 #include "Tests.h"
 

@@ -5,10 +5,8 @@
 #include "Empreinte.h"
 #include "Maladie.h"
 #include "GestionFichiers.h"
-#include <iostream>
 #include "Analyse.h"
 #include "LigneHistorique.h"
-using namespace std;
 
 class Utilisateur
 {

@@ -1,6 +1,7 @@
 #ifndef LIGNEHISTORIQUE_H
 #define LIGNEHISTORIQUE_H
 
+#include "Reglages.h"
 #include "Analyse.h" 
 class Utilisateur;
 
